@@ -4,7 +4,8 @@
 #include <string>
 using namespace std;
 
-struct Date {
+struct Date
+{
     int jour;
     string mois;
     int annee;
@@ -14,23 +15,24 @@ struct Date {
     string diffGMT;
 };
 
-struct requeteHTTP {
+struct requeteHTTP
+{
     string action;
     string url;
     string http_version;
 };
 
-class Requete {
+class Requete
+{
 public:
-
     Requete();
-    Requete(const Requete& unRequete);
+    Requete(const Requete &unRequete);
     Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID);
     ~Requete();
 
     string GetExtension() const;
 
-    Requete& operator=(const Requete& unRequete);
+    Requete &operator=(const Requete &unRequete);
 
 protected:
     string mAdresseIP;
