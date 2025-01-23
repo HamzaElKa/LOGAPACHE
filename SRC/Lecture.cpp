@@ -26,7 +26,6 @@ vector<Requete> Lecture::Lire() {
     vector<Requete> requetes;
     string ligne;
 
-    // Lecture du fichier ligne par ligne
     while (getline(mFluxFichier, ligne)) {
         stringstream ss(ligne);
         string temp;
@@ -41,7 +40,7 @@ vector<Requete> Lecture::Lire() {
         getline(ss, userName, ' ');
 
         Date date;
-        getline(ss, temp, '['); // Ignore '['
+        getline(ss, temp, '['); 
         getline(ss, temp, '/');
         date.jour = stoi(temp);
         getline(ss, date.mois, '/');
@@ -55,15 +54,15 @@ vector<Requete> Lecture::Lire() {
         date.seconde = stoi(temp);
         getline(ss, date.diffGMT, ']');
 
-        getline(ss, temp, ' ');  // Ignore the space after the date
-        getline(ss, temp, '"');  // Ignore the quote before action
+        getline(ss, temp, ' ');  
+        getline(ss, temp, '"');  
 
         requeteHTTP rHTTP;
         getline(ss, rHTTP.action, ' ');
         getline(ss, rHTTP.url, ' ');
-        getline(ss, rHTTP.http_version, '"');  // Ignore the quote after http_version
+        getline(ss, rHTTP.http_version, '"');  
 
-        getline(ss, temp, ' ');  // Ignore space before status
+        getline(ss, temp, ' ');  
 
         int status;
         getline(ss, temp, ' ');
@@ -74,8 +73,8 @@ vector<Requete> Lecture::Lire() {
         qte = stoi(temp);
 
         string referer;
-        getline(ss, temp, '"');  // Ignore first quote of referer
-        getline(ss, referer, '"'); // Get referer inside quotes
+        getline(ss, temp, '"');  
+        getline(ss, referer, '"'); 
 
         size_t position = referer.find(mBaseLocale);
         if (position != string::npos) {
@@ -83,15 +82,13 @@ vector<Requete> Lecture::Lire() {
         }
 
         string clientID;
-        getline(ss, temp, '"');  // Ignore first quote of clientID
-        getline(ss, clientID, '"'); // Get clientID inside quotes
+        getline(ss, temp, '"');  
+        getline(ss, clientID, '"'); 
 
-        // Créer un objet Requete et l'ajouter au vecteur
         Requete r(adresseIP, logName, userName, date, rHTTP, status, qte, referer, clientID);
         requetes.push_back(r);
     }
 
-    // Si aucune requête n'a été lue, afficher une erreur
     if (requetes.empty()) {
         cerr << "Erreur, aucune ligne valide n'a été trouvée !" << endl;
         exit(EXIT_FAILURE);
