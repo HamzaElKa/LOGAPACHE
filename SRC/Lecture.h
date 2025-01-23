@@ -5,9 +5,10 @@
 #include <vector>
 #include "Requete.h"
 
-class Lecture {
+class Lecture
+{
 public:
-    Lecture(const string& fluxFichier, const string& baseLocale);
+    Lecture(const string &fluxFichier, const string &baseLocale);
     ~Lecture();
 
     vector<Requete> Lire();
