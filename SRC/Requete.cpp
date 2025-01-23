@@ -4,15 +4,16 @@
 
 using namespace std;
 
-Requete::Requete() {
-    // Constructeur par défaut
+Requete::Requete()
+{
 }
 
-Requete::Requete(const Requete& unRequete) {
+Requete::Requete(const Requete &unRequete)
+{
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Requete>" << endl;
 #endif
-    *this = unRequete;  // Utilisation de l'opérateur d'assignation
+    *this = unRequete;
 }
 
 Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
@@ -38,8 +39,10 @@ Requete::~Requete()
 #endif
 }
 
-Requete& Requete::operator=(const Requete& unRequete) {
-    if (this != &unRequete) {
+Requete &Requete::operator=(const Requete &unRequete)
+{
+    if (this != &unRequete)
+    {
         mAdresseIP = unRequete.mAdresseIP;
         mLogName = unRequete.mLogName;
         mUserName = unRequete.mUserName;
@@ -53,9 +56,11 @@ Requete& Requete::operator=(const Requete& unRequete) {
     return *this;
 }
 
-string Requete::GetExtension() const {
+string Requete::GetExtension() const
+{
     size_t pos = mRHTTP.url.find_last_of('.');
-    if (pos != string::npos) {
+    if (pos != string::npos)
+    {
         return mRHTTP.url.substr(pos + 1);
     }
     return "";
