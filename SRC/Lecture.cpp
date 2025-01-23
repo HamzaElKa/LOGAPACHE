@@ -32,13 +32,16 @@ vector<Requete> Lecture::Lire(void) const
 	while (getline(m_fluxFichier, ligne))
 	{
 		stringstream ss(ligne);
+		string temp;
 
 		string adresseIP;
 		getline(ss, adresseIP, ' ');
 
-		string temp;
-		getline(ss, temp, ' ');
-		getline(ss, temp, ' ');
+		string logName;
+		getline(ss, logName, ' ');
+
+		string userName;
+		getline(ss, userName, ' ');
 
 		Date date;
 		getline(ss, temp, '[');
@@ -98,7 +101,7 @@ vector<Requete> Lecture::Lire(void) const
 		getline(ss, temp, '"');
 		getline(ss, clientID, '"');
 
-		Requete r(adresseIP, temp, temp, date, rHTTP, status, qte, referer, clientID);
+		Requete r(adresseIP, logName, userName, date, rHTTP, status, qte, referer, clientID);
 
 		requetes.push_back(r);
 	}
@@ -129,3 +132,4 @@ Lecture::~Lecture()
 		m_fluxFichier.close();
 	}
 }
+
