@@ -1,91 +1,62 @@
-/*************************************************************************
-                           Requete  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
-
-//---------- Réalisation de la classe <Requete> (fichier Requete.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
-using namespace std;
-#include <iostream>
-#include<fstream>
-//------------------------------------------------------ Include personnel
 #include "Requete.h"
+#include <iostream>
+#include <sstream>
 
-//------------------------------------------------------------- Constantes
+using namespace std;
 
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-// type Requete::Méthode ( liste des paramètres )
-// Algorithme :
-//
-string Requete::GetExtension() const
-{
-	istringstream ss;
-	ss.str(URLdest);
-	string extension;
-	string line;
-	getline(ss,line,'.');
-	getline(ss,extension);
-	return extension;
+Requete::Requete() {
+    // Constructeur par défaut
 }
-//{
-//} //----- Fin de Méthode
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-Requete & Requete::operator = ( const Requete & unRequete )
-// Algorithme :
-//
-{
-} //----- Fin de operator =
-
-
-//-------------------------------------------- Constructeurs - destructeur
-Requete::Requete ( const Requete & unRequete )
-// Algorithme :
-//
-{
+Requete::Requete(const Requete& unRequete) {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Requete>" << endl;
 #endif
-} //----- Fin de Requete (constructeur de copie)
+    *this = unRequete;  // Utilisation de l'opérateur d'assignation
+}
 
-
-Requete::Requete (string un_IP_Client, string un_User_Id, string un_User_Name, Date une_Date, Temps un_Temps,
-string une_Time_Zone, string un_Type_Query, string un_URL, int un_Status, int une_Qte, string un_Referer )
-// Algorithme :
-//
+Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Requete>" << endl;
 #endif
-IP_Client=un_IP_Client;
-User_Id=un_User_Id;
-User_Name=un_User_Name;
-Date=une_Date;
-Temps=un_Temps;
-Time_Zone=une_Time_Zone;
-Type_Query=un_Type_Query;
-URL=un_URL;
-Status=un_Status;
-Qte=une_Qte;
-Referer=un_Referer;
-} //----- Fin de Requete
+    mAdresseIP = AdresseIP;
+    mLogName = LogName;
+    mUserName = UserName;
+    mDate = Date;
+    mRHTTP = RHTTP;
+    mStatus = Status;
+    mQte = Qte;
+    mReferer = Referer;
+    mClientID = ClientID;
+}
 
-Requete::~Requete ( )
-// Algorithme :
-//
+Requete::~Requete()
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Requete>" << endl;
 #endif
-} //----- Fin de ~Requete
-//------------------------------------------------------------------ PRIVE
-//----------------------------------------------------- Méthodes protégées
+}
+
+Requete& Requete::operator=(const Requete& unRequete) {
+    if (this != &unRequete) {
+        mAdresseIP = unRequete.mAdresseIP;
+        mLogName = unRequete.mLogName;
+        mUserName = unRequete.mUserName;
+        mDate = unRequete.mDate;
+        mRHTTP = unRequete.mRHTTP;
+        mStatus = unRequete.mStatus;
+        mQte = unRequete.mQte;
+        mReferer = unRequete.mReferer;
+        mClientID = unRequete.mClientID;
+    }
+    return *this;
+}
+
+string Requete::GetExtension() const {
+    size_t pos = mRHTTP.url.find_last_of('.');
+    if (pos != string::npos) {
+        return mRHTTP.url.substr(pos + 1);
+    }
+    return "";
+}
