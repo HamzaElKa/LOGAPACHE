@@ -10,17 +10,11 @@ Requete::Requete()
 
 Requete::Requete(const Requete &unRequete)
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Requete>" << endl;
-#endif
     *this = unRequete;
 }
 
 Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Requete>" << endl;
-#endif
     mAdresseIP = AdresseIP;
     mLogName = LogName;
     mUserName = UserName;
@@ -34,9 +28,6 @@ Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, r
 
 Requete::~Requete()
 {
-#ifdef MAP
-    cout << "Appel au destructeur de <Requete>" << endl;
-#endif
 }
 
 Requete &Requete::operator=(const Requete &unRequete)
