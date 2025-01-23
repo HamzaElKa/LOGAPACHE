@@ -22,16 +22,14 @@ struct requeteHTTP {
 
 class Requete {
 public:
-    // Constructeurs
+
     Requete();
     Requete(const Requete& unRequete);
     Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID);
     ~Requete();
 
-    // Méthodes publiques
     string GetExtension() const;
 
-    // Surcharge de l'opérateur d'assignation
     Requete& operator=(const Requete& unRequete);
 
 protected:
