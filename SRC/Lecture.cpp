@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include "Lecture.h"
+#include "Requete.h"
 
 using namespace std;
 
