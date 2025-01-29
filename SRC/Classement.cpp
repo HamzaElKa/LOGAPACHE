@@ -36,10 +36,10 @@ void Classement::Ajouter(const vector<Requete> & unVecRequetes)
 		return;
 	}
 
-	vector<Requete>::iterator it;
+	vector<Requete>::const_iterator it;
 	for (it = unVecRequetes.begin(); it != unVecRequetes.end(); ++it)
     {
-        string dest = it->mRHTTP.url; // Récupération de l'URL destination
+        string dest = it->GetDestination(); // Récupération de l'URL destination
 
         // Incrémentation du compteur de hits pour cette URL
         map<string, int>::iterator classementIt = classement.find(dest);
@@ -82,6 +82,8 @@ void Classement::Affichage()
 	{
 		cout << vec[i].first << " (" << vec[i].second << " hits)" << endl;
 	}
+}
+ //----- Fin de Affichage
 
 Classement::Classement()
 // Algorithme :
@@ -92,7 +94,7 @@ Classement::Classement()
 	#endif
 } //----- Fin de Classement
 
-Classement::Classement(const & unClassement)
+Classement::Classement(const Classement & unClassement)
 // Algorithme :
 //
 {
@@ -114,4 +116,3 @@ Classement::~Classement()
 } //----- Fin de ~Classement
 
 
-} //----- Fin de Affichage
