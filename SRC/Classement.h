@@ -53,15 +53,15 @@ public:
 	// - Affiche un message si aucune donnée n'est disponible.
 
 	//-------------------------------------------- Constructeurs - destructeur
-	Classement() = default;
+	Classement();
 	// Mode d'emploi :
 	// Constructeur par défaut.
 
-	Classement(const Classement &unClassement) = default;
+	Classement(const Classement &unClassement);
 	// Mode d'emploi (constructeur de copie) :
 	// Copie un classement existant.
 
-	virtual ~Classement() = default;
+	virtual ~Classement();
 	// Mode d'emploi :
 	// Destructeur de la classe.
 
