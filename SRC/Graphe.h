@@ -6,129 +6,74 @@
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Graphe> (fichier Graphe.cpp) ------------
+//---------- Interface de la classe <Graphe> (fichier Graphe.h) ----------------
+#if ! defined ( Graphe_H )
+#define Graphe_H
 
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
-using namespace std;
-#include <iostream>
-
-//------------------------------------------------------ Include personnel
-#include "Graphe.h"
+//--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
 
+//------------------------------------------------------------------ Types
+
+//------------------------------------------------------------------------
+// Rôle de la classe <Graphe>
+//
+//
+//------------------------------------------------------------------------
+
+class Graphe
+{
 //----------------------------------------------------------------- PUBLIC
 
+public:
 //----------------------------------------------------- Méthodes publiques
+    void GenererFichier(const string & nomFichier) const;
+	// Mode d'emploi :
+	// g�n�re le fichier au format GraphViz avec l'extension ".dot"
+	// Contrat :
+	// rien.
 
-void Graphe::GenererFichier(const string & nomFichier) const
-// Algorithme :
-//
-{
-    ofstream ficGraphe(nomFichier);
-    ficGraphe << "digraph {" << endl;
-
-    //Ajout des noeuds
-    map<string, int>::const_iterator it;
-	for (it = mNoeuds.begin(); it != mNoeuds.end(); it++)
-	{
-		fichierGraphe << "node" << it->second << " [label=\"" << it->first << "\"];" << endl;
-	}
-
-    //Ajout des Arêtes
-    map<string, map<string, int>>::const_iterator it2;
-    for (it2 = mAretes.begin(); it2 != mAretes.end(); it2++)
-	{
-		map<string, int>::const_iterator inodes_dest =nodes.find(it2->first); // récupération du rang du noeud dest
-		int dest = inodes_dest->second;
-        map<string, int>::const_iterator it3;
-		for (it3 = it2->second.begin(); it3 != it2->second.end(); it3++)
-		{
-			map<string, int>::const_iterator inodes_src = nodes.find(ij->first); // récupération du rang du noeud src
-			int src = inodes_src->second;
-			fichierGraphe << "node" << src << " -> " << "node" << dest << "[label=\"" << it3->second << "\"];" << endl;
-		}
-	}
-
-    ficGraphe << "}" << endl;
-	ficGraphe.close();
-
-} //----- Fin de Méthode
-
-void Graphe::Ajouter(const vector<Requete> & vecRequetes)
-// Algorithme :
-//
-{
-
-    vector<Requete>::iterator r;
-    for (r = vecRequetes.begin(); r!=vecRequetes.end(); ++r)
-    {
-        string dest=r->mRHTTP.url;
-	    string src=r->mReferer;
-
-        map<string, map<string, int>>::iterator it=mAretes.find(dest);
-	    if(it==mAretes.end())
-        {
-		    //premiere apparition d'une destination
-		    map<string,int> m={{src,1}};
-		    mAretes.insert(make_pair(dest,m));
-	    }
-        else
-        {
-		    (it->second)[src]++;
-	    }
-	    if(mNoeuds.emplace(make_pair(src,mNbNoeuds)).second)
-        {
-		    ++mNbNoeuds;
-	    }
-	    if(mNoeuds.emplace(make_pair(dest,mNbNoeuds)).second)
-        {
-		    ++mNbNoeuds;
-	    }   
-    }
-} //----- Fin de Méthode
-
-//------------------------------------------------- Surcharge d'opérateurs
+    void Ajouter(const vector<Requete> & vecRequetes);
+	// Mode d'emploi :
+	// ajoute dans la map "mAretes" est dans la map "nodes" les URL contenues 
+	// dans une requ�te ainsi que les filtres � appliquer.
+	// Contrat :
+	// rien.
 
 //-------------------------------------------- Constructeurs - destructeur
-Graphe::Graphe ( const Graphe & unGraphe )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Graphe>" << endl;
-#endif
+    Graphe ( const Graphe & unGraphe );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
 
-    mAretes = unGraphe.mAretes;
-    mNbNoeuds = unGraphe.mNbNoeuds;
-    mNoeuds = unGraphe.mNoeuds;
+    Graphe ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
-} //----- Fin de Graphe (constructeur de copie)
-
-
-Graphe::Graphe ( ) : mNbNoeuds(0)
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Graphe>" << endl;
-#endif
-} //----- Fin de Graphe
-
-
-Graphe::~Graphe()
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Graphe>" << endl;
-#endif
-} //----- Fin de ~Graphe
-
+    virtual ~Graphe ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 //------------------------------------------------------------------ PRIVE
 
+protected:
 //----------------------------------------------------- Méthodes protégées
+
+//----------------------------------------------------- Attributs protégés
+
+    map<string,map<string,int>> mAretes;
+    map <string, int> mNoeuds;
+    int mNbNoeuds;  
+
+};
+
+//-------------------------------- Autres définitions dépendantes de <Graphe>
+
+#endif // Graphe_H
 
