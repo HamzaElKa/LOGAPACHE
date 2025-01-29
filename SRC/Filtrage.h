@@ -29,7 +29,7 @@ class Filtrage : public Ancetre
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    void Filtrage::Filtrer(vector<requete> & r) const;
+    void Filtrer(vector<requete> & vecRequetes) const;
 
     bool Skip(const requete & r) const;
     // type Méthode ( liste des paramètres );
