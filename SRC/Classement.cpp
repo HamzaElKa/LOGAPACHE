@@ -23,7 +23,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void Classement::AjouterVecRequetes(const vector<Requete> & unVecRequetes);
+void Classement::Ajouter(const vector<Requete> & unVecRequetes);
 // Algorithme :
 // - Parcourt la structure "passage" du graphe pour calculer le total des hits
 //   pour chaque URL destination.
