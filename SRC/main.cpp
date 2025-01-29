@@ -40,13 +40,11 @@ int main(int argc, char * argv[])
     Lecture lecture(nomFic, baseURL);
     Graphe graphe;
     Classement classement;
-    while (!lecture.finie())
-    {
-        requete r = lecture.lire();
-        if (genereGraphe) graphe.Ajouter(r, filtre);
-        classement.Ajouter(r, filtre);
-    }
+    vector<Requete> vecRequetes = lecture.Lire();
+    filtre.Filtrer(vecRequetes);
 
+    if (genereGraphe) graphe.Ajouter(vecRequetes);
+    classement.Ajouter(vecRequetes);
     if (genereGraphe) graphe.GenerateFichier(nomGraphe);
     classement.Affichage();
 
