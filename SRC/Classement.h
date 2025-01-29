@@ -18,7 +18,8 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
-#include "GenerateGraphe.h"
+#include "Graphe.h"
+#include "Requete.h"
 using namespace std;
 
 //------------------------------------------------------------------------
