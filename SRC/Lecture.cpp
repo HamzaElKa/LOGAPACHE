@@ -75,8 +75,11 @@ vector<Requete> Lecture::Lire()
 
 		int qte;
 		getline(ss, temp, ' ');
-		qte = stoi(temp);
-
+		
+		//Cas particulier : "-"
+		if (temp == "-") qte = 0;
+		else qte = stoi(temp);
+		
 		string referer;
 		getline(ss, temp, '"');
 		getline(ss, referer, '"');
