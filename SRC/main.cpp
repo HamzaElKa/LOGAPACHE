@@ -16,7 +16,7 @@ using namespace std;
 #include "Classement.h"
 #include "Graphe.h"
 
-void Demarrage(bool &, int &, bool &, bool &, string &, string &, const int &, const char * [], bool &, const string &);
+void Demarrage(bool &, int &, bool &, bool &, string &, string &, const int &, char * [], bool &, const string &);
 
 int main(int argc, char * argv[])
 {
@@ -28,32 +28,32 @@ int main(int argc, char * argv[])
 
     bool filtrerTemps = false;
     int heure = -1;
-    bool filtrerImages = false;
+    bool filtrerExtensions = false;
 	bool genererGraphe = false;
-	string nomGraphe;
-	string nomFic;
+	string nomGraphe = "";
+	string nomFic = "";
     bool erreur = false;
 
-    Demarrage(requeteComplete, filtrerTemps, heure, filtrerImages, genererGraphe, nomFic, nomGraphe, argc, argv, erreur, baseURL);
+    Demarrage(filtrerTemps, heure, filtrerExtensions, genererGraphe, nomFic, nomGraphe, argc, argv, erreur, baseURL);
     if (erreur) return 1;
 
-    Filtrage filtre(filtrerTemps, heure, filtrerExtensions, Extensions);
+    Filtrage filtre(filtrerTemps, heure, filtrerExtensions, extensions);
     Lecture lecture(nomFic, baseURL);
     Graphe graphe;
     Classement classement;
     vector<Requete> vecRequetes = lecture.Lire();
     filtre.Filtrer(vecRequetes);
 
-    if (genereGraphe) graphe.Ajouter(vecRequetes);
+    if (genererGraphe) graphe.Ajouter(vecRequetes);
     classement.Ajouter(vecRequetes);
-    if (genereGraphe) graphe.GenerateFichier(nomGraphe);
+    if (genererGraphe) graphe.GenererFichier(nomGraphe);
     classement.Affichage();
 
 }
 
 
-void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerImages, bool &genererGraphe, string & nomGraphe, 
-                string & nomFic, const int & argv, const char * argv[], bool & erreur, const string & baseURL)
+void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool &genererGraphe, string & nomGraphe, 
+                string & nomFic, const int & argc, char * argv[], bool & erreur, const string & baseURL)
 {
 
     if (argc == 1)
@@ -66,24 +66,24 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerImages, bool &gen
     erreur = false;
     nomFic = argv[argc-1];
 
-    unsigned i=1;
+    int i=1;
 
     while (i<argc-1)
     {
         if(!strcmp(argv[i],"-e"))
         {
-			if(filtreImage)
+			if(filtrerExtensions)
             { 
                 cerr << "Vous avez utilise plusieurs fois l'option de compilation -e" << endl;
 				erreur=true;
 			}
             else
             {
-				filtrerImages=true;
+				filtrerExtensions=true;
 				i++;
 			}
 		}
-        else if(!strcmp(argv[optionCounter],"-g"))
+        else if(!strcmp(argv[i],"-g"))
         {
 			if(genererGraphe)
             {
@@ -102,14 +102,14 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerImages, bool &gen
 				}
                 else
                 {
-					error=true;
+					erreur=true;
                     cerr << "Il manque le nom de fichier du graphe" << endl;
                     return;
 				}
 			}
 		}
 
-        else if(!strcmp(argv[optionCounter],"-t"))
+        else if(!strcmp(argv[i],"-t"))
         {
 			if(filtrerTemps)
             {
