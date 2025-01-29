@@ -28,7 +28,7 @@ class Graphe : public Ancetre
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void GenerateFichier(sonst string & nomFichier);
+    void GenerateFichier(const string & nomFichier);
 	// Mode d'emploi :
 	// g�n�re le fichier au format GraphViz avec l'extension ".dot"
 	// Contrat :
