@@ -67,7 +67,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-    map<string,map<string,int>> graphe; 
+    map<string,map<string,int>> mGraphe; 
 
 };
 
