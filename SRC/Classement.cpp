@@ -23,7 +23,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void Classement::Ajouter(const vector<Requete> & unVecRequetes);
+void Classement::Ajouter(const vector<Requete> & unVecRequetes)
 // Algorithme :
 // - Parcourt la structure "passage" du graphe pour calculer le total des hits
 //   pour chaque URL destination.
@@ -38,10 +38,21 @@ void Classement::Ajouter(const vector<Requete> & unVecRequetes);
 
 	vector<Requete>::iterator it;
 	for (it = unVecRequetes.begin(); it != unVecRequetes.end(); ++it)
-	{
-		
+    {
+        string dest = it->mRHTTP.url; // Récupération de l'URL destination
 
-	}
+        // Incrémentation du compteur de hits pour cette URL
+        map<string, int>::iterator classementIt = classement.find(dest);
+        if (classementIt == classement.end())
+        {
+            classement.insert(make_pair(dest, 1)); // Première occurrence
+        }
+        else
+        {
+            classementIt->second++; // Incrémentation du compteur
+        }
+    }
+
 } //----- Fin de LireGraphe
 
 void Classement::Affichage()
