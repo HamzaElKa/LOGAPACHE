@@ -52,8 +52,8 @@ int main(int argc, char * argv[])
 }
 
 
-void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool &genererGraphe, string & nomGraphe, 
-                string & nomFic, const int & argc, char * argv[], bool & erreur, const string & baseURL)
+void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool &genererGraphe, string & nomFic, 
+                string & nomGraphe, const int & argc, char * argv[], bool & erreur, const string & baseURL)
 {
 
     if (argc == 1)
