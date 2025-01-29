@@ -14,6 +14,7 @@ using namespace std;
 #include "Lecture.h"
 #include "Requete.h"
 #include "Classement.h"
+#include "Graphe.h"
 
 void Demarrage(bool &, int &, bool &, bool &, string &, string &, const int &, const char * [], bool &, const string &);
 
