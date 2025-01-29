@@ -30,7 +30,7 @@ Requete::~Requete()
 {
 }
 
-Requete &Requete::operator=(const Requete &unRequete)
+Requete & Requete::operator=(const Requete &unRequete)
 {
     if (this != &unRequete)
     {
@@ -55,4 +55,23 @@ string Requete::GetExtension() const
         return mRHTTP.url.substr(pos + 1);
     }
     return "";
+}
+
+string Requete::GetDestination() const
+{
+
+    return mRHTTP.url;
+
+}
+
+string Requete::GetReferer() const
+{
+
+    return mReferer;
+
+}
+
+int Requete::GetHeure() const
+{
+    return mDate.heure;
 }
