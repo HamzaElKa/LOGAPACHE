@@ -9,10 +9,11 @@
 //---------- Réalisation de la classe <Filtrage> (fichier Filtrage.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
-
+#include "Filtrage.h"
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <vector>
 
 //------------------------------------------------------ Include personnel
 
@@ -22,16 +23,16 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void Filtrage::Filtrer(vector<requete> & vecRequetes) const
+void Filtrage::Filtrer(vector<Requete> & vecRequetes) const
 // Algorithme :
 //
 {
     vector<Requete>::iterator it = vecRequetes.begin();
-    while (it != vecFiltre.end())
+    while (it != vecRequetes.end())
     {
-        if (Skip(it))
+        if (Skip(*it))
         {
-            it = vecFiltre.erase(it); // erase renvoie l'itérateur suivant après suppression
+            it = vecRequetes.erase(it); // erase renvoie l'itérateur suivant après suppression
         }
         else
         {
@@ -41,7 +42,7 @@ void Filtrage::Filtrer(vector<requete> & vecRequetes) const
 }
 //----- Fin de Méthode
 
-bool Filtrage::Skip(const requete & r) const
+bool Filtrage::Skip(const Requete & r) const
 // Algorithme :
 //
 {
@@ -49,11 +50,19 @@ bool Filtrage::Skip(const requete & r) const
     
     if (mFiltrerTemps)
     {
-        if (r.time.heure==mHeure) return true;
+        if (r.GetHeure()==mHeure) return true;
     }
     if (mFiltrerExtensions)
     {
-        vector<string>::iterator it = mExtensions.find(r.GetExtension());
+        vector<string>::const_iterator it = mExtensions.begin();
+        while (it != mExtensions.end()) 
+        {
+            if (*it == r.GetExtension()) 
+            {
+                break;  // Trouvé, sortir de la boucle
+            }
+            ++it;
+        }
         if (it != mExtensions.end()) return true;
     }
     return false;
