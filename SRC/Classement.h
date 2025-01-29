@@ -40,12 +40,6 @@ public:
 	// Contrat :
 	// - Le graphe doit contenir des données valides.
 
-	void AjouterRequete(const string &url, int hits);
-	// Mode d'emploi :
-	// Ajoute ou met à jour le nombre de hits pour une URL spécifique.
-	// Contrat :
-	// - L'URL doit être une chaîne valide.
-
 	void Affichage();
 	// Mode d'emploi :
 	// Affiche les 10 URLs les plus consultées (triées par hits décroissants).
