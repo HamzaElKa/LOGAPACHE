@@ -12,6 +12,8 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Filtrage.h"
+#include "Requete.h"
+#include <vector>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,16 +24,16 @@
 //
 //------------------------------------------------------------------------
 
-class Filtrage : public Ancetre
+class Filtrage
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    void Filtrer(vector<requete> & vecRequetes) const;
+    void Filtrer(vector<Requete> & vecRequetes) const;
 
-    bool Skip(const requete & r) const;
+    bool Skip(const Requete & r) const;
     // type Méthode ( liste des paramètres );
     // Mode d'emploi :
     //
@@ -60,7 +62,7 @@ protected:
 
     bool mFiltrerTemps;
     int mHeure;
-    bool mFiltrerImages;
+    bool mFiltrerExtensions;
     vector<string> mExtensions;
 
 };
