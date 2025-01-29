@@ -25,14 +25,19 @@ struct requeteHTTP
 class Requete
 {
 public:
+
+
     Requete();
     Requete(const Requete &unRequete);
     Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID);
     ~Requete();
 
     string GetExtension() const;
+    string GetDestination() const;
+    string GetReferer() const;
+    int GetHeure() const;
 
-    Requete &operator=(const Requete &unRequete);
+    Requete & operator=(const Requete &unRequete);
 
 protected:
     string mAdresseIP;
