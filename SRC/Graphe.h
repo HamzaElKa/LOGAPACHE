@@ -11,7 +11,11 @@
 #define Graphe_H
 
 //--------------------------------------------------- Interfaces utilisées
-
+#include "Requete.h"
+#include <vector>
+#include <map>
+#include <fstream>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
