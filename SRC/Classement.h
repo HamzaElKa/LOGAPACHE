@@ -33,7 +33,7 @@ class Classement
 public:
 	//----------------------------------------------------- Méthodes publiques
 
-	void LireGraphe(const GenerateGraphe &unGraphe);
+	void AjouterVecRequetes(const vector<Requete> &unVecRequetes, const Filtrage & unFiltre);
 	// Mode d'emploi :
 	// Parcourt le graphe des passages et calcule le total des hits pour chaque
 	// URL de destination. Met à jour le classement en conséquence.
