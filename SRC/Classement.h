@@ -23,6 +23,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Classement>
+//
 // Cette classe gère le classement des requêtes selon un critère défini.
 // Elle permet d'ajouter des requêtes et d'afficher le classement.
 //------------------------------------------------------------------------
