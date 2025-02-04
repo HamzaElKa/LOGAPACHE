@@ -34,42 +34,47 @@ class Classement
 
 public:
 //----------------------------------------------------- Méthodes publiques
-
+    
+    void Ajouter(const vector<Requete> &unVecRequetes);
     // Ajouter : Ajoute des requêtes dans le classement
     // Mode d'emploi : 
     // La méthode prend un vecteur de requêtes et les ajoute au classement.
-    void Ajouter(const vector<Requete> &unVecRequetes);
+    
 
+    void Affichage();
     // Affichage : Affiche le classement actuel
     // Mode d'emploi : 
     // La méthode affiche le classement des requêtes dans la console.
-    void Affichage();
+    
     
 //------------------------------------------------- Surcharge d'opérateurs
+    Classement & operator = ( const Classement &unClassement );
     // Surcharge de l'opérateur d'affectation
     // Mode d'emploi : 
     // Cette méthode permet de copier un autre objet Classement dans le présent objet.
-    Classement & operator = ( const Classement &unClassement );
     // Contrat :
     // L'opération est valide si l'objet sur lequel elle est appelée est bien
     // initialisé et qu'il n'y a pas de fuite mémoire.
 
 //-------------------------------------------- Constructeurs - destructeur
 
+    Classement ( const Classement &unClassement );
     // Constructeur de copie
     // Mode d'emploi :
     // Initialise un objet Classement à partir d'un autre.
-    Classement ( const Classement &unClassement );
+    
 
+    Classement ( );
     // Constructeur par défaut
     // Mode d'emploi :
     // Initialise un objet Classement vide.
-    Classement ( );
+    
 
+    virtual ~Classement ( );
     // Destructeur
     // Mode d'emploi :
     // Nettoie les ressources de l'objet Classement.
-    virtual ~Classement ( );
+    
 
 //------------------------------------------------------------------ PRIVE
 
