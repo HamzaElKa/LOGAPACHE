@@ -14,6 +14,7 @@
 #include "Filtrage.h"
 #include "Requete.h"
 #include <vector>
+#include <unordered_set>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -41,7 +42,7 @@ public:
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-    Filtrage(bool, int, bool, vector<string>);
+    Filtrage(bool, int, bool, unordered_set<string>);
     // Mode d'emploi :
     //
     // Contrat :
@@ -63,7 +64,7 @@ protected:
     bool mFiltrerTemps;
     int mHeure;
     bool mFiltrerExtensions;
-    vector<string> mExtensions;
+    unordered_set<string> mExtensions;
 
 };
 
