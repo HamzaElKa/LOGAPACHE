@@ -1,9 +1,10 @@
 /*************************************************************************
                            Filtrage  -  filtrer des objets de type Requete
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
+    début                : 22/01/2025
+    copyright            : (C) 2025 par B3107 - B3110
+    e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
+    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
 //---------- Interface de la classe <Filtrage> (fichier Filtrage.h) ----------------
