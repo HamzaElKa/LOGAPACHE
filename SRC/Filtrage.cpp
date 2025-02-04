@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Filtrage  -  description
+                           Filtrage  -  filtrer des objets de type Requete
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
