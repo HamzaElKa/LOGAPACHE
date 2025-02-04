@@ -21,8 +21,7 @@
 //------------------------------------------------------------------------
 // Rôle de la classe <Lecture>
 //
-// Cette classe permet de lire un fichier de logs ligne par ligne et de filtrer les requêtes 
-// selon des critères définis dans un objet de type Filtrage.
+// Cette classe permet de lire un fichier de logs ligne par ligne.
 //
 //------------------------------------------------------------------------
 
@@ -49,20 +48,21 @@ public:
     ~Lecture();
     // Mode d'emploi :
     // Le destructeur libère le flux de fichier et les ressources associées.
-
+    // Contrat :
+    // aucun.
 
 //-------------------------------------------- Constructeurs - destructeur
     Lecture ( const Lecture & unLecture );
     // Mode d'emploi (constructeur de copie) :
     // Initialise un objet Lecture à partir d'un autre.
     // Contrat :
-    // aucun
+    // aucun.
 
     virtual ~Lecture ( );
     // Mode d'emploi :
     // Nettoie les ressources de l'objet Lecture.
     // Contrat :
-    // aucun
+    // aucun.
 
 //----------------------------------------------------------------- PRIVE
 
