@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Requete  -  description
+                           Requete  -  représente une requête HTTP extraite d'un fichier de logs
                              -------------------
     début                : 22/01/2025
     copyright            : (C) 2025 par B3107 - B3110
