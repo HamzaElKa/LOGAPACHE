@@ -88,6 +88,7 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool 
             { 
                 cerr << "Vous avez utilise plusieurs fois l'option de compilation -e" << endl;
                 erreur = true;
+                return;
             }
             else
             {
