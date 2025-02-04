@@ -38,7 +38,7 @@ public:
     // Mode d'emploi :
     // Cette méthode écrit un fichier ".dot" qui représente le graphe sous forme d'un format compréhensible par GraphViz pour une visualisation graphique.
     // Contrat :
-    // aucun.
+    // Aucun.
 
     void Ajouter(const vector<Requete> & vecRequetes);
     // Mode d'emploi :
@@ -53,19 +53,19 @@ public:
     // Mode d'emploi :
     // Crée une nouvelle instance de Graphe en copiant les attributs de l'objet Graphe fourni.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     Graphe ( );
     // Mode d'emploi :
     // Crée une instance vide de Graphe.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     virtual ~Graphe ( );
     // Mode d'emploi :
     // Libère les ressources utilisées par l'objet Graphe.
     // Contrat :
-    // aucun.
+    // Aucun.
 
 //------------------------------------------------------------------ PRIVE
 protected:
