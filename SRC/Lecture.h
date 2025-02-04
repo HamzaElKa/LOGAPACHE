@@ -49,20 +49,20 @@ public:
     // Mode d'emploi :
     // Le destructeur libère le flux de fichier et les ressources associées.
     // Contrat :
-    // aucun.
+    // Aucun.
 
 //-------------------------------------------- Constructeurs - destructeur
     Lecture ( const Lecture & unLecture );
     // Mode d'emploi (constructeur de copie) :
     // Initialise un objet Lecture à partir d'un autre.
     // Contrat :
-    // aucun.
+    // Aucun.
 
     virtual ~Lecture ( );
     // Mode d'emploi :
     // Nettoie les ressources de l'objet Lecture.
     // Contrat :
-    // aucun.
+    // Aucun.
 
 //----------------------------------------------------------------- PRIVE
 
