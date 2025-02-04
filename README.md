@@ -92,7 +92,12 @@ L'exécutable `analog` prend en argument un fichier de log et peut être utilis�
 ## Tests
 Un framework de test est fourni pour valider le fonctionnement du programme. Les tests doivent être passés avec succès avant toute soumission du projet.
 
-### Exécution des tests dans le répértoire Tests de FrameWorkdeTests
+### Exécution des tests dans le répértoire Tests de FrameWorkdeTests et droits d'accès 
+Avant de commencer les tests, effectuer dans votre terminal la commande suivant dans votre répértoire 
+```sh
+chmod -R 777 ../
+```
+Puis rentrer dans le répértoire situé dans FrameWorkdeTests puis Tests et effectuer la commande suivante : 
 ```sh
 ./mktest.sh
 ```
