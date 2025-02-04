@@ -108,6 +108,19 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool 
             if(i < argc - 1)
             {
                 nomGraphe = argv[i]; // Nom du fichier pour le graphe
+
+                size_t pos = nomGraphe.find_last_of('.');
+              
+                if (pos != string::npos)
+                {
+                    if (nomGraphe.substr(pos + 1)!="dot")
+                    {
+                        erreur = 1;
+                        cerr << "Le fichier pour creer le graphe doit etre un .dot" << endl;
+                        return;
+                    }
+                }
+              
                 i++;
             }
             else
