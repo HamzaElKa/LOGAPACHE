@@ -1,95 +1,54 @@
-/*************************************************************************
-                           Requete  -  Gestion des requêtes HTTP
-                             -------------------
-    début                : 04/02/2025
-    copyright            : (C) 2025 par Mohammed IICH
-    e-mail               : mohammed.iich@outlook.fr
-*************************************************************************/
+#ifndef REQUETE_H
+#define REQUETE_H
 
-//---------- Réalisation de la classe <Requete> (fichier Requete.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
+#include <string>
 using namespace std;
-#include <iostream>
 
-//------------------------------------------------------ Include personnel
-#include "Requete.h"
-
-//------------------------------------------------------------- Constantes
-
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-string Requete::GetExtension() const
-// Algorithme :
-// Retourne l'extension du fichier demandé
+struct Date
 {
-} //----- Fin de GetExtension
+    int jour;
+    string mois;
+    int annee;
+    int heure;
+    int minute;
+    int seconde;
+    string diffGMT;
+};
 
-string Requete::GetDestination() const
-// Algorithme :
-// Retourne la destination de la requête
+struct requeteHTTP
 {
-} //----- Fin de GetDestination
+    string action;
+    string url;
+    string http_version;
+};
 
-string Requete::GetReferer() const
-// Algorithme :
-// Retourne le referer de la requête
+class Requete
 {
-} //----- Fin de GetReferer
+public:
 
-int Requete::GetHeure() const
-// Algorithme :
-// Retourne l'heure de la requête
-{
-} //----- Fin de GetHeure
 
-//------------------------------------------------- Surcharge d'opérateurs
-Requete & Requete::operator=(const Requete &unRequete)
-// Algorithme :
-// Affectation d'une requête à une autre
-{
-} //----- Fin de operator=
+    Requete();
+    Requete(const Requete &unRequete);
+    Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID);
+    ~Requete();
 
-//-------------------------------------------- Constructeurs - destructeur
-Requete::Requete(const Requete &unRequete)
-// Algorithme :
-// Constructeur par copie
-{
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Requete>" << endl;
-#endif
-} //----- Fin de Requete (constructeur de copie)
+    string GetExtension() const;
+    string GetDestination() const;
+    string GetReferer() const;
+    int GetHeure() const;
 
-Requete::Requete()
-// Algorithme :
-// Constructeur par défaut
-{
-#ifdef MAP
-    cout << "Appel au constructeur de <Requete>" << endl;
-#endif
-} //----- Fin de Requete
+    Requete & operator=(const Requete &unRequete);
 
-Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
-// Algorithme :
-// Constructeur avec paramètres
-{
-#ifdef MAP
-    cout << "Appel au constructeur avec paramètres de <Requete>" << endl;
-#endif
-} //----- Fin de Requete
+protected:
+    string mAdresseIP;
+    string mLogName;
+    string mUserName;
+    Date mDate;
+    requeteHTTP mRHTTP;
+    int mStatus;
+    int mQte;
+    string mReferer;
+    string mClientID;
+};
 
-Requete::~Requete()
-// Algorithme :
-// Destructeur de la classe
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <Requete>" << endl;
-#endif
-} //----- Fin de ~Requete
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
+#endif // REQUETE_H
