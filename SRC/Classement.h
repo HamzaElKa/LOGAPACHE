@@ -42,15 +42,6 @@ public:
     // Mode d'emploi : 
     // La méthode affiche le classement des requêtes, triées par ordre décroissant du nombre de hits.
     
-//------------------------------------------------- Surcharge d'opérateurs
-    
-    Classement & operator = ( const Classement &unClassement );
-    // Mode d'emploi : 
-    // Cette méthode permet de copier un autre objet Classement dans le présent objet.
-    // Contrat :
-    // L'opération est valide si l'objet sur lequel elle est appelée est bien
-    // initialisé et qu'il n'y a pas de fuite mémoire.
-
 //-------------------------------------------- Constructeurs - destructeur
 
     Classement ( const Classement &unClassement );
