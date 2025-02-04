@@ -1,4 +1,4 @@
-#Variables
+# Variables
 MAINCPP = main.cpp
 MAINO = main.o
 REQUETECPP = Requete.cpp
@@ -21,8 +21,7 @@ OBJECTS = $(MAINO) $(REQUETEO) $(FILTRAGEO) $(CLASSEMENTO) $(GRAPHEO) $(LECTUREO
 
 COMPIL = g++
 OPTIONS = -ansi -pedantic -Wall -std=c++11
-EXEC = analog
-EXE = ./../app/$(EXEC)
+EXEC = ../FrameWorkdeTests/bin/analog
 COMPILATION = -c
 EDL = -o
 REMOVE = rm
@@ -32,18 +31,16 @@ VALGRIND = valgrind
 OPTIONSVALGRIND = --leak-check=full
 CLEAN = clean
 
-#Compilation du programme principal
+# Compilation du programme principal
 $(EXEC): $(OBJECTS)
 	$(COMPIL) $(OPTIONS) $(EDL) $(EXEC) $(OBJECTS)
 
-
-# Ajout de l'option MAP si définie
+# Ajout de l'option MAP si dÃ©finie
 ifdef MAP
 OPTIONS += -DMAP
 endif
 
-#Compilation des fichiers source
-
+# Compilation des fichiers source
 $(MAINO): $(MAINCPP) $(FILTRAGEH) $(REQUETEH) $(CLASSEMENTH) $(GRAPHEH)
 	$(COMPIL) $(OPTIONS) $(COMPILATION) $(MAINCPP)
 
@@ -62,10 +59,9 @@ $(GRAPHEO): $(GRAPHECPP) $(GRAPHEH) $(FILTRAGEH) $(REQUETEH)
 $(CLASSEMENTO): $(CLASSEMENTCPP) $(CLASSEMENTH) $(REQUETEH)
 	$(COMPIL) $(OPTIONS) $(COMPILATION) $(CLASSEMENTCPP)
 
-#Nettoyage
+# Nettoyage
 $(CLEAN):
 	$(REMOVE) $(ALL) $(OFILES) $(EXEC)
 
 $(VALGRIND): $(EXEC)
-	$(VALGRIND) $(OPTIONSVALGRIND) $(EXE)
-
+	$(VALGRIND) $(OPTIONSVALGRIND) $(EXEC)
