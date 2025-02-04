@@ -1,37 +1,77 @@
 /*************************************************************************
-                           Lecture -  lire un fichier de logs ligne par ligne
+                           Lecture  -  lire un fichier de logs ligne par ligne
                              -------------------
     début                : 22/01/2025
     copyright            : (C) 2025 par B3107 - B3110
     e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
-    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
+                           mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / 
+                           youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
-#ifndef LECTURE_H
+//---------- Interface de la classe <Lecture> (fichier Lecture.h) ----------------
+#if ! defined ( LECTURE_H )
 #define LECTURE_H
 
+//--------------------------------------------------- Interfaces utilisées
 #include <fstream>
 #include <vector>
 #include "Requete.h"
 #include "Filtrage.h"
 
-// Classe permettant la lecture des requêtes depuis un fichier
+//------------------------------------------------------------------------
+// Rôle de la classe <Lecture>
+// Cette classe permet de lire un fichier de logs ligne par ligne et de filtrer les requêtes 
+// selon des critères définis dans un objet de type Filtrage.
+//
+//------------------------------------------------------------------------
+
 class Lecture
 {
-public:
-    // Constructeur prenant en paramètre le nom du fichier à lire et l'URL de base
-    Lecture(const string &fluxFichier, const string &baseLocale);
-    
-    // Destructeur libérant les ressources associées
-    ~Lecture();
+//----------------------------------------------------------------- PUBLIC
 
-    // Méthode permettant de lire les requêtes et de les filtrer selon un objet Filtrage
+public:
+//----------------------------------------------------- Méthodes publiques
+
     vector<Requete> Lire(const Filtrage & filtre);
+    // Lire : Lit un fichier de logs ligne par ligne et retourne un vecteur de requêtes filtrées
+    // Mode d'emploi :
+    // Cette méthode ouvre le fichier spécifié, lit chaque ligne et crée des objets Requete en filtrant 
+    // selon l'objet Filtrage passé en paramètre.
+    // Contrat :
+    // Le fichier doit être ouvert correctement et l'objet Filtrage valide.
+
+    Lecture(const string &fluxFichier, const string &baseLocale);
+    // Mode d'emploi :
+    // Le constructeur initialise un objet Lecture en associant un fichier de logs et une base URL 
+    // pour traiter les requêtes.
+    // Contrat :
+    // Le fichier doit exister et être lisible.
+
+    ~Lecture();
+    // Mode d'emploi :
+    // Le destructeur libère le flux de fichier et les ressources associées.
+
+
+//-------------------------------------------- Constructeurs - destructeur
+    Lecture ( const Lecture & unLecture );
+    // Mode d'emploi (constructeur de copie) :
+    // Initialise un objet Lecture à partir d'un autre.
+    // Contrat :
+    // L'objet source doit être valide.
+
+    virtual ~Lecture ( );
+    // Mode d'emploi :
+    // Nettoie les ressources de l'objet Lecture.
+    // Contrat :
+    // L'objet doit être correctement nettoyé lors de la destruction.
+
+//----------------------------------------------------------------- PRIVE
 
 protected:
+//----------------------------------------------------- Attributs protégés
     ifstream mFluxFichier; // Flux de fichier pour la lecture
     string mBaseLocale; // URL de base utilisée pour la lecture et le traitement des requêtes
+
 };
 
 #endif // LECTURE_H
-
