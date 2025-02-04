@@ -73,7 +73,7 @@ void Classement::Affichage()
 	// Trier par nombre de hits décroissant
 	sort(vec.begin(), vec.end(),
 		 [](const pair<string, int> &a, const pair<string, int> &b) {
-			 return b.second > a.second; // Tri décroissant
+			 return b.second < a.second; // Tri décroissant
 		 });
 
 	// Afficher les 10 premières URLs
