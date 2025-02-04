@@ -73,7 +73,8 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    map<string, int> classement; // On stocke le classement des requêtes sous forme d'un map, où la clé est l'URL et la valeur est le nombre de hits
+    map<string, int> classement; // On stocke le classement des requêtes sous forme d'un map, où la clé est l'URL 
+                                 // et la valeur est le nombre de hits.
 };
 
 #endif // CLASSEMENT_H
