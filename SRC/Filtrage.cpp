@@ -31,7 +31,7 @@ bool Filtrage::Skip(const Requete & r) const
     if (!mFiltrerExtensions && !mFiltrerTemps) return false;
 
     // Si le filtrage par heure est activé et correspond à l'heure de la requête, on la filtre
-    if (mFiltrerTemps && r.GetHeure() == mHeure) 
+    if (mFiltrerTemps && r.GetHeure() != mHeure) 
     {
         return true;
     }
