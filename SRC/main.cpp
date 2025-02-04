@@ -9,6 +9,7 @@
 using namespace std;
 #include <iostream>
 #include <vector>
+#include <unordered_set>
 #include <cstring>
 #include "Filtrage.h"
 #include "Lecture.h"
@@ -21,9 +22,13 @@ void Demarrage(bool &, int &, bool &, bool &, string &, string &, const int &, c
 int main(int argc, char * argv[])
 {
 
-    vector<string> extensions = {"jpg", "jpeg", "png", "bmp", "gif", "tiff", "tif", "webp", "ico", 
-                                    "svg", "eps", "ai", "raw", "cr2", "nef", "arw", "dng", "psd", "heic", 
-                                    "heif", "xcf", "css", "js", "mjs"};
+    #include <unordered_set>
+
+    unordered_set<string> extensions = {
+    "jpg", "jpeg", "png", "bmp", "gif", "tiff", "tif", "webp", "ico",
+    "svg", "eps", "ai", "raw", "cr2", "nef", "arw", "dng", "psd", "heic",
+    "heif", "xcf", "css", "js", "mjs"};
+
     string baseURL = "intranet-if.insa-lyon.fr";
 
     bool filtrerTemps = false;
@@ -41,8 +46,7 @@ int main(int argc, char * argv[])
     Lecture lecture(nomFic, baseURL);
     Graphe graphe;
     Classement classement;
-    vector<Requete> vecRequetes = lecture.Lire();
-    filtre.Filtrer(vecRequetes);
+    vector<Requete> vecRequetes = lecture.Lire(filtre);
 
     if (genererGraphe) graphe.Ajouter(vecRequetes);
     classement.Ajouter(vecRequetes);
@@ -65,7 +69,6 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool 
 
     erreur = false;
     nomFic = argv[argc-1];
-
     int i=1;
 
     while (i<argc-1)
