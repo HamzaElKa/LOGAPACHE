@@ -24,6 +24,7 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+// Ajoute les requêtes au classement en incrémentant les comptages
 void Classement::Ajouter(const vector<Requete> & unVecRequetes)
 {
     if (unVecRequetes.empty())
@@ -32,22 +33,27 @@ void Classement::Ajouter(const vector<Requete> & unVecRequetes)
         return;
     }
 
+    // Parcours des requêtes pour compter les destinations
     vector<Requete>::const_iterator it;
     for (it = unVecRequetes.begin(); it != unVecRequetes.end(); ++it)
     {
         string dest = it->GetDestination();
         map<string, int>::iterator classementIt = classement.find(dest);
+        
+        // Si la destination n'est pas encore dans le classement, l'ajouter avec une occurrence initiale
         if (classementIt == classement.end())
         {
             classement.insert(make_pair(dest, 1));
         }
         else
         {
+            // Sinon, incrémenter le comptage pour cette destination
             classementIt->second++;
         }
     }
 }
 
+// Affiche le classement des requêtes par nombre de hits, trié par ordre décroissant
 void Classement::Affichage()
 {
     if (classement.empty())
@@ -56,14 +62,17 @@ void Classement::Affichage()
         return;
     }
 
+    // Conversion du classement en vecteur pour faciliter le tri
     vector<pair<string, int>> vec(classement.begin(), classement.end());
 
+    // Tri des résultats par nombre de hits, de manière décroissante
     sort(vec.begin(), vec.end(),
          [](const pair<string, int> &a, const pair<string, int> &b) {
              return b.second < a.second;
          });
 
     cout << "Top URLs consultées :" << endl;
+    // Affichage des 10 premières URLs du classement
     for (size_t i = 0; i < 10 && i < vec.size(); ++i)
     {
         cout << vec[i].first << " (" << vec[i].second << " hits)" << endl;
@@ -71,6 +80,8 @@ void Classement::Affichage()
 }
 
 //-------------------------------------------- Constructeurs - destructeur
+
+// Constructeur par défaut
 Classement::Classement()
 {
 #ifdef MAP
@@ -78,6 +89,7 @@ Classement::Classement()
 #endif
 }
 
+// Constructeur de copie : copie du classement existant
 Classement::Classement(const Classement & unClassement)
 {
 #ifdef MAP
@@ -86,6 +98,7 @@ Classement::Classement(const Classement & unClassement)
     classement = unClassement.classement;
 }
 
+// Destructeur
 Classement::~Classement()
 {
 #ifdef MAP
