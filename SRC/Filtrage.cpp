@@ -23,55 +23,31 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-void Filtrage::Filtrer(vector<Requete> & vecRequetes) const
-// Algorithme :
-//
-{
-    vector<Requete>::iterator it = vecRequetes.begin();
-    while (it != vecRequetes.end())
-    {
-        if (Skip(*it))
-        {
-            it = vecRequetes.erase(it); // erase renvoie l'itérateur suivant après suppression
-        }
-        else
-        {
-            ++it;
-        }
-    }
-}
-//----- Fin de Méthode
 
 bool Filtrage::Skip(const Requete & r) const
-// Algorithme :
-//
 {
-    if (!mFiltrerExtensions||!mFiltrerTemps) return false;
-    
-    if (mFiltrerTemps)
+    if (!mFiltrerExtensions && !mFiltrerTemps) return false;
+
+    if (mFiltrerTemps && r.GetHeure() == mHeure) 
     {
-        if (r.GetHeure()==mHeure) return true;
+        return true;
     }
-    if (mFiltrerExtensions)
+
+    if (mFiltrerExtensions) 
     {
-        vector<string>::const_iterator it = mExtensions.begin();
-        while (it != mExtensions.end()) 
+        if (mExtensions.find(r.GetExtension()) != mExtensions.end()) 
         {
-            if (*it == r.GetExtension()) 
-            {
-                break;  // Trouvé, sortir de la boucle
-            }
-            ++it;
+            return true;
         }
-        if (it != mExtensions.end()) return true;
     }
+
     return false;
 }
 //----- Fin de Méthode
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Filtrage::Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, vector<string> Extensions) : mFiltrerTemps(filtrerTemps), 
+Filtrage::Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unordered_set<string> Extensions) : mFiltrerTemps(filtrerTemps), 
                                                                                                         mHeure(heure), mFiltrerExtensions(filtrerExtensions), 
                                                                                                         mExtensions(Extensions)
 // Algorithme :
