@@ -1,5 +1,5 @@
 /*************************************************************************
-                           main -  description
+                           main -  fonction principale pour traiter les logs HTTP
                              -------------------
     début                : 22/01/2025
     copyright            : (C) 2025 par B3107 - B3110
