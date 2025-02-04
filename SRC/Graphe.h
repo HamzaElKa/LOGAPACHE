@@ -36,13 +36,15 @@ public:
 
     void GenererFichier(const string & nomFichier) const;
     // Mode d'emploi :
-    // Cette méthode écrit un fichier ".dot" qui représente le graphe sous forme d'un format compréhensible par GraphViz pour une visualisation graphique.
+    // Cette méthode écrit un fichier ".dot" qui représente le graphe sous forme d'un format compréhensible par GraphViz 
+    // pour une visualisation graphique.
     // Contrat :
     // Aucun.
 
     void Ajouter(const vector<Requete> & vecRequetes);
     // Mode d'emploi :
-    // Cette méthode parcourt un vecteur de requêtes et ajoute les URL ainsi que les filtres à appliquer dans les maps associées aux arêtes et noeuds du graphe.
+    // Cette méthode parcourt un vecteur de requêtes et ajoute les URL ainsi que les filtres à appliquer dans 
+    // les maps associées aux arêtes et noeuds du graphe.
     // Les arêtes correspondent aux relations entre les URLs, et les noeuds sont les URLs elles-mêmes.
     // Contrat :
     // Les requêtes doivent contenir des informations valides pour le graphe (destination, référent).
