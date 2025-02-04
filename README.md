@@ -51,7 +51,6 @@ Cela générera un exécutable `analog`.
 
 ## Ce que vous devriez savoir
 - Le programme est conçu pour fonctionner avec des fichiers de logs Apache au format standard.
-- Un fichier de log anonyme est disponible dans `/tmp/anonyme.log` pour les tests.
 - Un framework de test est fourni pour valider les résultats.
 - L’outil GraphViz doit être installé pour permettre la génération des fichiers `.dot`.
 
@@ -93,9 +92,9 @@ L'exécutable `analog` prend en argument un fichier de log et peut être utilis�
 ## Tests
 Un framework de test est fourni pour valider le fonctionnement du programme. Les tests doivent être passés avec succès avant toute soumission du projet.
 
-### Exécution des tests
+### Exécution des tests dans le répértoire Tests de FrameWorkdeTests
 ```sh
-make test
+./mktest.sh
 ```
 Les résultats des tests seront affichés directement dans la console.
 
