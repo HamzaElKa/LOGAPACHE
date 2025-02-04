@@ -38,20 +38,28 @@ public:
     void Filtrer(vector<Requete> & vecRequetes) const;
     // Mode d'emploi : 
     // Cette méthode parcourt le vecteur de requêtes et applique le filtrage en fonction des attributs de la classe.
+    // Contrat : 
+    // aucun.
 
     bool Skip(const Requete & r) const;
     // Mode d'emploi : 
     // Cette méthode retourne vrai si la requête r doit être ignorée selon les filtres appliqués (heure et extensions).
+    // Contrat : 
+    // aucun.
 
 //-------------------------------------------- Constructeurs - destructeur
     
     Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unordered_set<string> extensions);
     // Mode d'emploi :
     // Initialise un objet Filtrage avec les critères spécifiés pour filtrer les requêtes.
+    // Contrat : 
+    // aucun.
 
     virtual ~Filtrage ( );
     // Mode d'emploi : 
     // Nettoie les ressources utilisées par l'objet Filtrage lors de sa destruction.
+    // Contrat : 
+    // aucun.
 
 //------------------------------------------------------------------ PRIVE
 
