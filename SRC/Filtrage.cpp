@@ -24,16 +24,19 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
+// Vérifie si la requête doit être filtrée selon les critères définis
 bool Filtrage::Skip(const Requete & r) const
 {
+    // Si aucun filtrage n'est appliqué, la requête n'est pas filtrée
     if (!mFiltrerExtensions && !mFiltrerTemps) return false;
 
+    // Si le filtrage par heure est activé et correspond à l'heure de la requête, on la filtre
     if (mFiltrerTemps && r.GetHeure() == mHeure) 
     {
         return true;
     }
 
+    // Si le filtrage par extensions est activé et l'extension de la requête est dans la liste à filtrer
     if (mFiltrerExtensions) 
     {
         if (mExtensions.find(r.GetExtension()) != mExtensions.end()) 
@@ -42,17 +45,18 @@ bool Filtrage::Skip(const Requete & r) const
         }
     }
 
+    // La requête ne correspond à aucun critère de filtrage
     return false;
 }
 //----- Fin de Méthode
 
 
 //-------------------------------------------- Constructeurs - destructeur
+
+// Constructeur : initialise les critères de filtrage selon les paramètres
 Filtrage::Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unordered_set<string> Extensions) : mFiltrerTemps(filtrerTemps), 
                                                                                                         mHeure(heure), mFiltrerExtensions(filtrerExtensions), 
                                                                                                         mExtensions(Extensions)
-// Algorithme :
-//
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Filtrage>" << endl;
@@ -60,9 +64,9 @@ Filtrage::Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unorder
 } //----- Fin de Filtrage
 
 
+// Destructeur
 Filtrage::~Filtrage ( )
-// Algorithme :
-//
+// Nettoyage lors de la destruction de l'objet Filtrage
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Filtrage>" << endl;
@@ -73,4 +77,3 @@ Filtrage::~Filtrage ( )
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-
