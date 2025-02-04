@@ -25,69 +25,68 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 void Graphe::GenererFichier(const string & nomFichier) const
-// Algorithme :
-//
+// Génère un fichier dot pour représenter le graphe orienté
 {
     ofstream ficGraphe(nomFichier);
     ficGraphe << "digraph {" << endl;
 
-    //Ajout des noeuds
+    // Ajout des noeuds dans le fichier dot
     map<string, int>::const_iterator it;
-	for (it = mNoeuds.begin(); it != mNoeuds.end(); it++)
-	{
-		ficGraphe << "node" << it->second << " [label=\"" << it->first << "\"];" << endl;
-	}
+    for (it = mNoeuds.begin(); it != mNoeuds.end(); it++)
+    {
+        ficGraphe << "node" << it->second << " [label=\"" << it->first << "\"];" << endl;
+    }
 
-    //Ajout des Arêtes
+    // Ajout des arêtes (relations entre les noeuds) dans le fichier
     map<string, map<string, int>>::const_iterator it2;
     for (it2 = mAretes.begin(); it2 != mAretes.end(); it2++)
-	{
-		map<string, int>::const_iterator inoeuds_dest =mNoeuds.find(it2->first); // récupération du rang du noeud dest
-		int dest = inoeuds_dest->second;
+    {
+        map<string, int>::const_iterator inoeuds_dest = mNoeuds.find(it2->first);
+        int dest = inoeuds_dest->second;
         map<string, int>::const_iterator it3;
-		for (it3 = it2->second.begin(); it3 != it2->second.end(); it3++)
-		{
-			map<string, int>::const_iterator inoeuds_src = mNoeuds.find(it3->first); // récupération du rang du noeud src
-			int src = inoeuds_src->second;
-			ficGraphe << "node" << src << " -> " << "node" << dest << "[label=\"" << it3->second << "\"];" << endl;
-		}
-	}
+        for (it3 = it2->second.begin(); it3 != it2->second.end(); it3++)
+        {
+            map<string, int>::const_iterator inoeuds_src = mNoeuds.find(it3->first);
+            int src = inoeuds_src->second;
+            ficGraphe << "node" << src << " -> " << "node" << dest << "[label=\"" << it3->second << "\"];" << endl;
+        }
+    }
 
     ficGraphe << "}" << endl;
-	ficGraphe.close();
-
+    ficGraphe.close();
 } //----- Fin de Méthode
 
 void Graphe::Ajouter(const vector<Requete> & vecRequetes)
-// Algorithme :
-//
+// Ajoute des requêtes au graphe (enregistrant les sources et destinations)
 {
-
     vector<Requete>::const_iterator r;
-    for (r = vecRequetes.begin(); r!=vecRequetes.end(); ++r)
+    for (r = vecRequetes.begin(); r != vecRequetes.end(); ++r)
     {
-        string dest=r->GetDestination();
-	    string src=r->GetReferer();
+        string dest = r->GetDestination();
+        string src = r->GetReferer();
 
-        map<string, map<string, int>>::iterator it=mAretes.find(dest);
-	    if(it==mAretes.end())
+        map<string, map<string, int>>::iterator it = mAretes.find(dest);
+        if (it == mAretes.end())
         {
-		    //premiere apparition d'une destination
-		    map<string,int> m={{src,1}};
-		    mAretes.insert(make_pair(dest,m));
-	    }
+            // Première apparition de la destination
+            map<string, int> m = {{src, 1}};
+            mAretes.insert(make_pair(dest, m));
+        }
         else
         {
-		    (it->second)[src]++;
-	    }
-	    if(mNoeuds.emplace(make_pair(src,mNbNoeuds)).second)
+            // Mise à jour de la quantité pour la source existante
+            (it->second)[src]++;
+        }
+
+        // Ajout des noeuds s'ils n'existent pas déjà
+        if (mNoeuds.emplace(make_pair(src, mNbNoeuds)).second)
         {
-		    ++mNbNoeuds;
-	    }
-	    if(mNoeuds.emplace(make_pair(dest,mNbNoeuds)).second)
+            ++mNbNoeuds;
+        }
+        if (mNoeuds.emplace(make_pair(dest, mNbNoeuds)).second)
         {
-		    ++mNbNoeuds;
-	    }   
+            ++mNbNoeuds;
+        }
     }
 } //----- Fin de Méthode
 
@@ -95,8 +94,7 @@ void Graphe::Ajouter(const vector<Requete> & vecRequetes)
 
 //-------------------------------------------- Constructeurs - destructeur
 Graphe::Graphe ( const Graphe & unGraphe )
-// Algorithme :
-//
+// Constructeur de copie pour le graphe
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Graphe>" << endl;
@@ -105,13 +103,11 @@ Graphe::Graphe ( const Graphe & unGraphe )
     mAretes = unGraphe.mAretes;
     mNbNoeuds = unGraphe.mNbNoeuds;
     mNoeuds = unGraphe.mNoeuds;
-
 } //----- Fin de Graphe (constructeur de copie)
 
 
 Graphe::Graphe ( ) : mNbNoeuds(0)
-// Algorithme :
-//
+// Constructeur par défaut, initialise le nombre de noeuds à 0
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Graphe>" << endl;
@@ -120,8 +116,7 @@ Graphe::Graphe ( ) : mNbNoeuds(0)
 
 
 Graphe::~Graphe()
-// Algorithme :
-//
+// Destructeur, nettoyage du graphe
 {
 #ifdef MAP
     cout << "Appel au destructeur de <Graphe>" << endl;
