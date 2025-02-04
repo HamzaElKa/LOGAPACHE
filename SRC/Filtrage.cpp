@@ -72,4 +72,3 @@ Filtrage::~Filtrage ( )
     cout << "Appel au destructeur de <Filtrage>" << endl;
 #endif
 } //----- Fin de ~Filtrage
-// Fin de Filtrage.cpp
