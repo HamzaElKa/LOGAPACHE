@@ -19,20 +19,20 @@ using namespace std;
 // Constructeur : ouvre le fichier et initialise la base locale
 Lecture::Lecture(const string &fluxFichier, const string &baseLocale) : mBaseLocale(baseLocale)
 {
-    mFluxFichier.open(fluxFichier); // Ouvre le fichier en lecture
-    if (!mFluxFichier) // Vérifie si l'ouverture a échoué
+    mFluxFichier.open(fluxFichier); 
+    if (!mFluxFichier) 
     {
         cerr << "Erreur, impossible d'ouvrir le fichier !" << endl;
-        exit(EXIT_FAILURE); // Arrête le programme en cas d'erreur
+        exit(EXIT_FAILURE); 
     }
 }
 
 // Destructeur : ferme le fichier s'il est encore ouvert
 Lecture::~Lecture()
 {
-    if (mFluxFichier.is_open()) // Vérifie si le fichier est ouvert
+    if (mFluxFichier.is_open()) 
     {
-        mFluxFichier.close(); // Ferme le fichier
+        mFluxFichier.close(); 
     }
 }
 
@@ -43,7 +43,7 @@ vector<Requete> Lecture::Lire(const Filtrage & filtre)
     string ligne;
 
     // Lecture ligne par ligne du fichier
-    while (getline(mFluxFichier, ligne)) // Boucle pour lire chaque ligne
+    while (getline(mFluxFichier, ligne)) 
     {
         stringstream ss(ligne); // Convertit la ligne en flux de données
         string temp;
@@ -99,7 +99,7 @@ vector<Requete> Lecture::Lire(const Filtrage & filtre)
         size_t position = referer.find(mBaseLocale); // Recherche la base locale dans le referer
         if (position != string::npos) // Si la base locale est trouvée
         {
-            referer.erase(position, mBaseLocale.length()); // Supprime la base locale
+            referer.erase(position, mBaseLocale.length()); 
         }
 
         // Extraction de l'identifiant client
@@ -120,9 +120,9 @@ vector<Requete> Lecture::Lire(const Filtrage & filtre)
     if (requetes.empty()) // Si le vecteur est vide
     {
         cerr << "Erreur, aucune ligne valide n'a été trouvée !" << endl;
-        exit(EXIT_FAILURE); // Arrête le programme si aucune requête valide n'est trouvée
+        exit(EXIT_FAILURE); 
     }
 
-    return requetes; // Retourne le vecteur de requêtes lues et filtrées
+    return requetes; 
 }
 // Fin Lecture.cpp
