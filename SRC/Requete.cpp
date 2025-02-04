@@ -1,36 +1,56 @@
-#include "Requete.h"
+/*************************************************************************
+                           Requete  -  description
+                             -------------------
+    début                : 04/02/2025
+    copyright            : (C) 2025 par Mohammed IICH
+    e-mail               : mohammed.iich@outlook.fr
+*************************************************************************/
+
+//---------- Réalisation de la classe <Requete> (fichier Requete.cpp) ------------
+
+//---------------------------------------------------------------- INCLUDE
+
+//-------------------------------------------------------- Include système
+using namespace std;
 #include <iostream>
 #include <sstream>
 
-using namespace std;
+//------------------------------------------------------ Include personnel
+#include "Requete.h"
 
-Requete::Requete()
+//------------------------------------------------------------- Constantes
+
+//----------------------------------------------------------------- PUBLIC
+
+//----------------------------------------------------- Méthodes publiques
+
+string Requete::GetExtension() const
 {
-}
+    size_t pos = mRHTTP.url.find_last_of('.');
+    if (pos != string::npos)
+    {
+        return mRHTTP.url.substr(pos + 1);
+    }
+    return "";
+} //----- Fin de GetExtension
 
-Requete::Requete(const Requete &unRequete)
+string Requete::GetDestination() const
 {
-    *this = unRequete;
-}
+    return mRHTTP.url;
+} //----- Fin de GetDestination
 
-Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
+string Requete::GetReferer() const
 {
-    mAdresseIP = AdresseIP;
-    mLogName = LogName;
-    mUserName = UserName;
-    mDate = Date;
-    mRHTTP = RHTTP;
-    mStatus = Status;
-    mQte = Qte;
-    mReferer = Referer;
-    mClientID = ClientID;
-}
+    return mReferer;
+} //----- Fin de GetReferer
 
-Requete::~Requete()
+int Requete::GetHeure() const
 {
-}
+    return mDate.heure;
+} //----- Fin de GetHeure
 
-Requete & Requete::operator=(const Requete &unRequete)
+//------------------------------------------------- Surcharge d'opérateurs
+Requete & Requete::operator = (const Requete &unRequete)
 {
     if (this != &unRequete)
     {
@@ -45,33 +65,46 @@ Requete & Requete::operator=(const Requete &unRequete)
         mClientID = unRequete.mClientID;
     }
     return *this;
-}
+} //----- Fin de operator =
 
-string Requete::GetExtension() const
+
+//-------------------------------------------- Constructeurs - destructeur
+Requete::Requete(const Requete &unRequete)
 {
-    size_t pos = mRHTTP.url.find_last_of('.');
-    if (pos != string::npos)
-    {
-        return mRHTTP.url.substr(pos + 1);
-    }
-    return "";
-}
+#ifdef MAP
+    cout << "Appel au constructeur de copie de <Requete>" << endl;
+#endif
+    *this = unRequete;
+} //----- Fin de Requete (constructeur de copie)
 
-string Requete::GetDestination() const
+Requete::Requete()
 {
+#ifdef MAP
+    cout << "Appel au constructeur de <Requete>" << endl;
+#endif
+} //----- Fin de Requete
 
-    return mRHTTP.url;
-
-}
-
-string Requete::GetReferer() const
+Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
 {
+    mAdresseIP = AdresseIP;
+    mLogName = LogName;
+    mUserName = UserName;
+    mDate = Date;
+    mRHTTP = RHTTP;
+    mStatus = Status;
+    mQte = Qte;
+    mReferer = Referer;
+    mClientID = ClientID;
+} //----- Fin de Requete (constructeur avec paramètres)
 
-    return mReferer;
-
-}
-
-int Requete::GetHeure() const
+Requete::~Requete()
 {
-    return mDate.heure;
-}
+#ifdef MAP
+    cout << "Appel au destructeur de <Requete>" << endl;
+#endif
+} //----- Fin de ~Requete
+
+
+//------------------------------------------------------------------ PRIVE
+
+//----------------------------------------------------- Méthodes protégées
