@@ -46,12 +46,6 @@ public:
     // Contrat :
     // Le fichier doit exister et être lisible.
 
-    ~Lecture();
-    // Mode d'emploi :
-    // Le destructeur libère le flux de fichier et les ressources associées.
-    // Contrat :
-    // Aucun.
-
 //-------------------------------------------- Constructeurs - destructeur
     Lecture ( const Lecture & unLecture );
     // Mode d'emploi (constructeur de copie) :
