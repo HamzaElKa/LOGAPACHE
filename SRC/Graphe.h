@@ -4,7 +4,8 @@
     début                : 22/01/2025
     copyright            : (C) 2025 par B3107 - B3110
     e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
-    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
+                           mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / 
+                           youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
 //---------- Interface de la classe <Graphe> (fichier Graphe.h) ----------------
@@ -17,8 +18,8 @@
 #include <map>
 #include <fstream>
 using namespace std;
-//------------------------------------------------------------- Constantes
 
+//------------------------------------------------------------- Constantes
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
@@ -30,21 +31,20 @@ using namespace std;
 class Graphe
 {
 //----------------------------------------------------------------- PUBLIC
-
 public:
 //----------------------------------------------------- Méthodes publiques
     void GenererFichier(const string & nomFichier) const;
-	// Mode d'emploi :
-	// g�n�re le fichier au format GraphViz avec l'extension ".dot"
-	// Contrat :
-	// rien.
+    // Mode d'emploi :
+    // génère le fichier au format GraphViz avec l'extension ".dot"
+    // Contrat :
+    // rien.
 
     void Ajouter(const vector<Requete> & vecRequetes);
-	// Mode d'emploi :
-	// ajoute dans la map "mAretes" est dans la map "nodes" les URL contenues 
-	// dans une requ�te ainsi que les filtres � appliquer.
-	// Contrat :
-	// rien.
+    // Mode d'emploi :
+    // ajoute dans la map "mAretes" et dans la map "nodes" les URL contenues 
+    // dans une requête ainsi que les filtres à appliquer.
+    // Contrat :
+    // rien.
 
 //-------------------------------------------- Constructeurs - destructeur
     Graphe ( const Graphe & unGraphe );
@@ -66,7 +66,6 @@ public:
     //
 
 //------------------------------------------------------------------ PRIVE
-
 protected:
 //----------------------------------------------------- Méthodes protégées
 
