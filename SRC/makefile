@@ -30,12 +30,16 @@ OFILES = *.o
 VALGRIND = valgrind
 OPTIONSVALGRIND = --leak-check=full
 CLEAN = clean
+CHMOD = chmod
+RECURSIVE = -R
+OPTIONSCHMOD = 777
+FICPERE = ./../
 
 # Compilation du programme principal
 $(EXEC): $(OBJECTS)
 	$(COMPIL) $(OPTIONS) $(EDL) $(EXEC) $(OBJECTS)
 
-# Ajout de l'option MAP si dÃ©finie
+# Ajout de l'option MAP si dÃƒÂ©finie
 ifdef MAP
 OPTIONS += -DMAP
 endif
@@ -65,3 +69,6 @@ $(CLEAN):
 
 $(VALGRIND): $(EXEC)
 	$(VALGRIND) $(OPTIONSVALGRIND) $(EXEC)
+
+$(CHMOD):
+	$(CHMOD) $(RECURSIVE) $(OPTIONSCHMOD) $(FICPERE)
