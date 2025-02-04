@@ -25,10 +25,7 @@ using namespace std;
 //------------------------------------------------------------------------
 // Rôle de la classe <Graphe>
 //
-// Cette classe gère un graphe orienté représentant les relations entre 
-// les URL d'un ensemble de requêtes. Elle permet d'ajouter des données
-// au graphe, de générer un fichier au format GraphViz et de maintenir
-// un suivi des noeuds et arêtes du graphe.
+// Cette classe gère un graphe orienté représentant les relations entre les URL d'un ensemble de requêtes. 
 //------------------------------------------------------------------------
 
 class Graphe
@@ -40,6 +37,8 @@ public:
     void GenererFichier(const string & nomFichier) const;
     // Mode d'emploi :
     // Cette méthode écrit un fichier ".dot" qui représente le graphe sous forme d'un format compréhensible par GraphViz pour une visualisation graphique.
+    // Contrat :
+    // aucun.
 
     void Ajouter(const vector<Requete> & vecRequetes);
     // Mode d'emploi :
@@ -47,7 +46,6 @@ public:
     // Les arêtes correspondent aux relations entre les URLs, et les noeuds sont les URLs elles-mêmes.
     // Contrat :
     // Les requêtes doivent contenir des informations valides pour le graphe (destination, référent).
-
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -66,15 +64,18 @@ public:
     virtual ~Graphe ( );
     // Mode d'emploi :
     // Libère les ressources utilisées par l'objet Graphe.
+    // Contrat :
+    // aucun.
+
 //------------------------------------------------------------------ PRIVE
 protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
 
-    map<string,map<string,int>> mAretes; // Contient les arêtes du graphe sous forme d'une map : clé = URL de destination, valeur = map des URL sources et des poids des arêtes.
+    map<string,map<string,int>> mAretes; // map des arêtes du graphe 
 
-    map <string, int> mNoeuds; // Contient les noeuds du graphe sous forme d'une map : clé = URL, valeur = identifiant du noeud.
+    map <string, int> mNoeuds; // Noeuds du graphe sous forme d'une map
 
     int mNbNoeuds;   // Nombre total de noeuds dans le graphe
 
