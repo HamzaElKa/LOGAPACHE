@@ -1,11 +1,10 @@
 /*************************************************************************
-							 Classement
-								-
-	permet de classer les URL des requêtes d'un fichier log par ordre d'importance.
-							 -------------------
-	début                : 22/01/2025
-	copyright            : (C) 2025 par BINOME A COMPLÉTER
-	e-mail               :  A COMPLÉTER
+                           main -  description
+                             -------------------
+    début                : 22/01/2025
+    copyright            : (C) 2025 par B3107 - B3110
+    e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
+    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
 //---------- Interface de la classe <Classement> (fichier Classement.h) ----------------
