@@ -24,6 +24,7 @@ using namespace std;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Graphe>
+//
 // Cette classe gère un graphe orienté représentant les relations entre 
 // les URL d'un ensemble de requêtes. Elle permet d'ajouter des données
 // au graphe, de générer un fichier au format GraphViz et de maintenir
