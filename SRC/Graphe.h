@@ -80,4 +80,3 @@ protected:
 //-------------------------------- Autres définitions dépendantes de <Graphe>
 
 #endif // Graphe_H
-
