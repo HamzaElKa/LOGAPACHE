@@ -39,13 +39,13 @@ public:
     // Mode d'emploi : 
     // Cette méthode parcourt le vecteur de requêtes et applique le filtrage en fonction des attributs de la classe.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     bool Skip(const Requete & r) const;
     // Mode d'emploi : 
     // Cette méthode retourne vrai si la requête r doit être ignorée selon les filtres appliqués (heure et extensions).
     // Contrat : 
-    // aucun.
+    // Aucun.
 
 //-------------------------------------------- Constructeurs - destructeur
     
@@ -53,13 +53,13 @@ public:
     // Mode d'emploi :
     // Initialise un objet Filtrage avec les critères spécifiés pour filtrer les requêtes.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     virtual ~Filtrage ( );
     // Mode d'emploi : 
     // Nettoie les ressources utilisées par l'objet Filtrage lors de sa destruction.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
 //------------------------------------------------------------------ PRIVE
 
