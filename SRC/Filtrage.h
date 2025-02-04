@@ -22,8 +22,9 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Filtrage>
-//
-//
+// Cette classe permet de filtrer des requêtes en fonction de critères définis.
+// Elle offre des méthodes pour appliquer des filtres sur les extensions de fichiers 
+// et l'heure des requêtes, et décider si une requête doit être ignorée ou non.
 //------------------------------------------------------------------------
 
 class Filtrage
@@ -34,26 +35,22 @@ public:
 //----------------------------------------------------- Méthodes publiques
 
     void Filtrer(vector<Requete> & vecRequetes) const;
+    // Mode d'emploi : 
+    // Cette méthode parcourt le vecteur de requêtes et applique le filtrage en fonction des attributs de la classe.
 
     bool Skip(const Requete & r) const;
-    // type Méthode ( liste des paramètres );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : 
+    // Cette méthode retourne vrai si la requête r doit être ignorée selon les filtres appliqués (heure et extensions).
 
 //-------------------------------------------- Constructeurs - destructeur
-    Filtrage(bool, int, bool, unordered_set<string>);
+    
+    Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unordered_set<string> extensions);
     // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Initialise un objet Filtrage avec les critères spécifiés pour filtrer les requêtes.
 
     virtual ~Filtrage ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+    // Mode d'emploi : 
+    // Nettoie les ressources utilisées par l'objet Filtrage lors de sa destruction.
 
 //------------------------------------------------------------------ PRIVE
 
@@ -62,14 +59,16 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-    bool mFiltrerTemps;
-    int mHeure;
-    bool mFiltrerExtensions;
-    unordered_set<string> mExtensions;
+    bool mFiltrerTemps; // Attribut indiquant si le filtrage par heure est activé
+
+    int mHeure; // Attribut qui stocke l'heure de filtrage
+
+    bool mFiltrerExtensions; // Attribut indiquant si le filtrage par extensions est activé
+
+    unordered_set<string> mExtensions; // Ensemble des extensions à filtrer
 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Filtrage>
 
 #endif // Filtrage_H
-
