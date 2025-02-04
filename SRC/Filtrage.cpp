@@ -72,8 +72,4 @@ Filtrage::~Filtrage ( )
     cout << "Appel au destructeur de <Filtrage>" << endl;
 #endif
 } //----- Fin de ~Filtrage
-
-
-//------------------------------------------------------------------ PRIVE
-
-//----------------------------------------------------- Méthodes protégées
+// Fin de Filtrage.cpp
