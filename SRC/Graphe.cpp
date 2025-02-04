@@ -1,5 +1,5 @@
 /*************************************************************************
-                           Graphe  -  description
+                           Graphe  -  gérer le graphe orienté
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
