@@ -105,4 +105,3 @@ Classement::~Classement()
     cout << "Appel au destructeur de <Classement>" << endl;
 #endif
 }
-// Fin de Classement.cpp
