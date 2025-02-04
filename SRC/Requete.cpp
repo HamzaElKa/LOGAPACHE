@@ -33,25 +33,25 @@ string Requete::GetExtension() const
     {
         return mRHTTP.url.substr(pos + 1); // Retourne l'extension après le '.'
     }
-    return ""; // Si aucun '.' n'est trouvé, retourne une chaîne vide
+    return ""; 
 } //----- Fin de GetExtension
 
 // Retourne l'URL complète de la requête
 string Requete::GetDestination() const
 {
-    return mRHTTP.url; // Retourne l'URL de la requête HTTP
+    return mRHTTP.url; 
 } //----- Fin de GetDestination
 
 // Retourne le referer (URL précédente) de la requête
 string Requete::GetReferer() const
 {
-    return mReferer; // Retourne l'URL du referer
+    return mReferer; 
 } //----- Fin de GetReferer
 
 // Retourne l'heure de la requête
 int Requete::GetHeure() const
 {
-    return mDate.heure; // Retourne l'heure de la date de la requête
+    return mDate.heure;
 } //----- Fin de GetHeure
 
 //------------------------------------------------- Surcharge d'opérateurs
@@ -72,9 +72,8 @@ Requete & Requete::operator = (const Requete &unRequete)
         mReferer = unRequete.mReferer;
         mClientID = unRequete.mClientID;
     }
-    return *this; // Retourne l'objet courant après l'affectation
+    return *this; 
 } //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -84,7 +83,7 @@ Requete::Requete(const Requete &unRequete)
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Requete>" << endl;
 #endif
-    *this = unRequete; // Utilisation de l'opérateur d'affectation pour copier les valeurs
+    *this = unRequete;
 } //----- Fin de Requete (constructeur de copie)
 
 // Constructeur par défaut
