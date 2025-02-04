@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
         "heif", "xcf", "css", "js", "mjs"
     };
 
-    string baseURL = "intranet-if.insa-lyon.fr";
+    string baseURL = "http://intranet-if.insa-lyon.fr";
 
     // Initialisation des variables de filtrage et d'options
     bool filtrerTemps = false;
