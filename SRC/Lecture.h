@@ -35,15 +35,13 @@ public:
     vector<Requete> Lire(const Filtrage & filtre);
     // Lire : Lit un fichier de logs ligne par ligne et retourne un vecteur de requêtes filtrées
     // Mode d'emploi :
-    // Cette méthode ouvre le fichier spécifié, lit chaque ligne et crée des objets Requete en filtrant 
-    // selon l'objet Filtrage passé en paramètre.
+    // Cette méthode ouvre le fichier spécifié, lit chaque ligne et crée des objets Requete en filtrant selon l'objet Filtrage passé en paramètre.
     // Contrat :
     // Le fichier doit être ouvert correctement et l'objet Filtrage valide.
 
     Lecture(const string &fluxFichier, const string &baseLocale);
     // Mode d'emploi :
-    // Le constructeur initialise un objet Lecture en associant un fichier de logs et une base URL 
-    // pour traiter les requêtes.
+    // Le constructeur initialise un objet Lecture en associant un fichier de logs et une base URL pour traiter les requêtes.
     // Contrat :
     // Le fichier doit exister et être lisible.
 
@@ -57,13 +55,13 @@ public:
     // Mode d'emploi (constructeur de copie) :
     // Initialise un objet Lecture à partir d'un autre.
     // Contrat :
-    // L'objet source doit être valide.
+    // aucun
 
     virtual ~Lecture ( );
     // Mode d'emploi :
     // Nettoie les ressources de l'objet Lecture.
     // Contrat :
-    // L'objet doit être correctement nettoyé lors de la destruction.
+    // aucun
 
 //----------------------------------------------------------------- PRIVE
 
