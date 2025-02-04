@@ -109,5 +109,6 @@ protected:
     string mClientID;  
 
 //-------------------------------- Autres définitions dépendantes de <Requete>
+};
 
 #endif // REQUETE_H
