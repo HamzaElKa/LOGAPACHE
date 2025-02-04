@@ -5,6 +5,7 @@
 #include <vector>
 #include <fstream>
 
+
 using namespace std;
 
 Lecture::Lecture(const string &fluxFichier, const string &baseLocale) : mBaseLocale(baseLocale)
@@ -25,7 +26,7 @@ Lecture::~Lecture()
 	}
 }
 
-vector<Requete> Lecture::Lire()
+vector<Requete> Lecture::Lire(const Filtrage & filtre)
 {
 	vector<Requete> requetes;
 	string ligne;
@@ -95,7 +96,8 @@ vector<Requete> Lecture::Lire()
 		getline(ss, clientID, '"');
 
 		Requete r(adresseIP, logName, userName, date, rHTTP, status, qte, referer, clientID);
-		requetes.push_back(r);
+		bool skip = filtre.Skip(r);
+		if (!skip) requetes.push_back(r);
 	}
 
 	if (requetes.empty())
