@@ -19,110 +19,110 @@ using namespace std;
 // Constructeur : ouvre le fichier et initialise la base locale
 Lecture::Lecture(const string &fluxFichier, const string &baseLocale) : mBaseLocale(baseLocale)
 {
-    mFluxFichier.open(fluxFichier);
-    if (!mFluxFichier)
+    mFluxFichier.open(fluxFichier); // Ouvre le fichier en lecture
+    if (!mFluxFichier) // Vérifie si l'ouverture a échoué
     {
         cerr << "Erreur, impossible d'ouvrir le fichier !" << endl;
-        exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE); // Arrête le programme en cas d'erreur
     }
 }
 
 // Destructeur : ferme le fichier s'il est encore ouvert
 Lecture::~Lecture()
 {
-    if (mFluxFichier.is_open())
+    if (mFluxFichier.is_open()) // Vérifie si le fichier est ouvert
     {
-        mFluxFichier.close();
+        mFluxFichier.close(); // Ferme le fichier
     }
 }
 
 // Méthode permettant de lire et filtrer les requêtes
 vector<Requete> Lecture::Lire(const Filtrage & filtre)
 {
-    vector<Requete> requetes;
+    vector<Requete> requetes; // Vecteur pour stocker les requêtes lues
     string ligne;
 
     // Lecture ligne par ligne du fichier
-    while (getline(mFluxFichier, ligne))
+    while (getline(mFluxFichier, ligne)) // Boucle pour lire chaque ligne
     {
-        stringstream ss(ligne);
+        stringstream ss(ligne); // Convertit la ligne en flux de données
         string temp;
 
         // Extraction des différentes informations de la requête
         string adresseIP;
-        getline(ss, adresseIP, ' ');
+        getline(ss, adresseIP, ' '); // Récupère l'adresse IP
 
         string logName;
-        getline(ss, logName, ' ');
+        getline(ss, logName, ' '); // Récupère le logName
 
         string userName;
-        getline(ss, userName, ' ');
+        getline(ss, userName, ' '); // Récupère le userName
 
         // Extraction de la date et de l'heure
         Date date;
-        getline(ss, temp, '[');
-        getline(ss, temp, '/');
+        getline(ss, temp, '['); // Ignore le caractère '['
+        getline(ss, temp, '/'); // Récupère le jour
         date.jour = stoi(temp);
-        getline(ss, date.mois, '/');
-        getline(ss, temp, ':');
+        getline(ss, date.mois, '/'); // Récupère le mois
+        getline(ss, temp, ':'); // Récupère l'année
         date.annee = stoi(temp);
-        getline(ss, temp, ':');
+        getline(ss, temp, ':'); // Récupère l'heure
         date.heure = stoi(temp);
-        getline(ss, temp, ':');
+        getline(ss, temp, ':'); // Récupère les minutes
         date.minute = stoi(temp);
-        getline(ss, temp, ' ');
+        getline(ss, temp, ' '); // Récupère les secondes
         date.seconde = stoi(temp);
-        getline(ss, date.diffGMT, ']');
+        getline(ss, date.diffGMT, ']'); // Récupère le décalage GMT
 
         // Extraction de l'action HTTP et de l'URL
-        getline(ss, temp, ' ');
-        getline(ss, temp, '"');
+        getline(ss, temp, ' '); // Ignore le caractère ' '
+        getline(ss, temp, '"'); // Ignore le guillemet ouvrant
         requeteHTTP rHTTP;
-        getline(ss, rHTTP.action, ' ');
-        getline(ss, rHTTP.url, ' ');
-        getline(ss, rHTTP.http_version, '"');
+        getline(ss, rHTTP.action, ' '); // Récupère l'action HTTP (GET, POST, etc.)
+        getline(ss, rHTTP.url, ' '); // Récupère l'URL
+        getline(ss, rHTTP.http_version, '"'); // Récupère la version HTTP
 
         // Extraction du statut et de la quantité de données transférées
-        getline(ss, temp, ' ');
+        getline(ss, temp, ' '); // Ignore un espace
         int status;
-        getline(ss, temp, ' ');
+        getline(ss, temp, ' '); // Récupère le statut HTTP
         status = stoi(temp);
 
         int qte;
-        getline(ss, temp, ' ');
-        qte = (temp == "-") ? 0 : stoi(temp);
+        getline(ss, temp, ' '); // Récupère la quantité de données
+        qte = (temp == "-") ? 0 : stoi(temp); // Si la quantité est "-", la mettre à 0
 
         // Extraction du referer et suppression de la base locale si présente
         string referer;
-        getline(ss, temp, '"');
-        getline(ss, referer, '"');
-        size_t position = referer.find(mBaseLocale);
-        if (position != string::npos)
+        getline(ss, temp, '"'); // Ignore le premier guillemet
+        getline(ss, referer, '"'); // Récupère le referer
+        size_t position = referer.find(mBaseLocale); // Recherche la base locale dans le referer
+        if (position != string::npos) // Si la base locale est trouvée
         {
-            referer.erase(position, mBaseLocale.length());
+            referer.erase(position, mBaseLocale.length()); // Supprime la base locale
         }
 
         // Extraction de l'identifiant client
         string clientID;
-        getline(ss, temp, '"');
-        getline(ss, clientID, '"');
+        getline(ss, temp, '"'); // Ignore le guillemet
+        getline(ss, clientID, '"'); // Récupère l'identifiant client
 
         // Création d'un objet Requete et application du filtre
         Requete r(adresseIP, logName, userName, date, rHTTP, status, qte, referer, clientID);
-        bool skip = filtre.Skip(r);
-        if (!skip)
+        bool skip = filtre.Skip(r); // Applique le filtre pour savoir si la requête doit être ignorée
+        if (!skip) // Si la requête ne doit pas être ignorée
         {
-            requetes.push_back(r);
+            requetes.push_back(r); // Ajoute la requête au vecteur
         }
     }
 
     // Vérification que des requêtes valides ont été trouvées
-    if (requetes.empty())
+    if (requetes.empty()) // Si le vecteur est vide
     {
         cerr << "Erreur, aucune ligne valide n'a été trouvée !" << endl;
-        exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE); // Arrête le programme si aucune requête valide n'est trouvée
     }
 
-    return requetes;
+    return requetes; // Retourne le vecteur de requêtes lues et filtrées
 }
 // Fin Lecture.cpp
