@@ -1,9 +1,10 @@
 /*************************************************************************
-                           Requete  -  Gestion des requêtes HTTP
+                           main -  description
                              -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par Mohammed IICH
-    e-mail               : mohammed.iich@outlook.fr
+    début                : 22/01/2025
+    copyright            : (C) 2025 par B3107 - B3110
+    e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
+    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
 //---------- Interface de la classe <Requete> (fichier Requete.h) ----------------
