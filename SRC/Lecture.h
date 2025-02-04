@@ -35,7 +35,8 @@ public:
     vector<Requete> Lire(const Filtrage & filtre);
     // Lire : Lit un fichier de logs ligne par ligne et retourne un vecteur de requêtes filtrées
     // Mode d'emploi :
-    // Cette méthode ouvre le fichier spécifié, lit chaque ligne et crée des objets Requete en filtrant selon l'objet Filtrage passé en paramètre.
+    // Cette méthode ouvre le fichier spécifié, lit chaque ligne et crée des objets Requete en filtrant 
+    // selon l'objet Filtrage passé en paramètre.
     // Contrat :
     // Le fichier doit être ouvert correctement et l'objet Filtrage valide.
 
