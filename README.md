@@ -7,7 +7,6 @@
 - [Configuration requise](#configuration-requise)
 - [Ce que vous devriez savoir](#ce-que-vous-devriez-savoir)
 - [Utilisation](#utilisation)
-- [Exemples d'utilisation](#exemples-dutilisation)
 - [Tests](#tests)
 - [Contributeurs](#contributeurs)
 
@@ -67,28 +66,6 @@ L'exécutable `analog` prend en argument un fichier de log et peut être utilis�
 - `-g nomfichier.dot` : Génère un fichier `.dot` représentant le graphe des parcours utilisateurs.
 - `-e` : Exclut les fichiers de type image, CSS et JavaScript des statistiques.
 - `-t heure` : Ne prend en compte que les requêtes effectuées dans l'intervalle [heure, heure+1[.
-
-## Exemples d'utilisation
-- Afficher les 10 documents les plus consultés :
-  ```sh
-  ./analog logs_apache.log
-  ```
-- Générer un graphe des parcours :
-  ```sh
-  ./analog -g parcours.dot logs_apache.log
-  ```
-- Exclure les fichiers statiques et générer un graphe :
-  ```sh
-  ./analog -e -g parcours.dot logs_apache.log
-  ```
-- Filtrer les requêtes entre 12h et 13h :
-  ```sh
-  ./analog -t 12 logs_apache.log
-  ```
-- Combinaison de plusieurs options :
-  ```sh
-  ./analog -e -t 12 -g parcours.dot logs_apache.log
-  ```
 
 ## Tests
 Un framework de test est fourni pour valider le fonctionnement du programme. Les tests doivent être passés avec succès avant toute soumission du projet.
