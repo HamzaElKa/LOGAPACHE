@@ -158,5 +158,11 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool 
                 return;
             }
         }
+      else
+        {
+          erreur = 1;
+          cerr << "Une option de compilation inconnue a été entrée" << endl;
+          return;
+        }
     }
 }
