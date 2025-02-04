@@ -20,6 +20,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Lecture>
+//
 // Cette classe permet de lire un fichier de logs ligne par ligne et de filtrer les requêtes 
 // selon des critères définis dans un objet de type Filtrage.
 //
