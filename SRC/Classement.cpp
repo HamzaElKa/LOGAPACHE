@@ -1,34 +1,10 @@
-/*************************************************************************
-                           Classement -  description
-                             -------------------
-    début                : 22/01/2025
-    copyright            : (C) 2025 par B3107 - B3110
-    e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
-    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
-*************************************************************************/
-
-//---------- Réalisation de la classe <Classement> (fichier Classement.cpp) ------------
-
-//---------------------------------------------------------------- INCLUDE
-
-//-------------------------------------------------------- Include système
 #include <iostream>
 using namespace std;
 
-//------------------------------------------------------ Include personnel
 #include "Classement.h"
 
-//----------------------------------------------------------------- PUBLIC
-
-//----------------------------------------------------- Méthodes publiques
-
 void Classement::Ajouter(const vector<Requete> & unVecRequetes)
-// Algorithme :
-// - Parcourt la structure "passage" du graphe pour calculer le total des hits
-//   pour chaque URL destination.
-// - Ajoute ou met à jour les hits dans la map "classement".
 {
-
 	if (unVecRequetes.empty())
 	{
 		cerr << "Erreur : Vous n'avez aucune requete" << endl;
@@ -38,27 +14,20 @@ void Classement::Ajouter(const vector<Requete> & unVecRequetes)
 	vector<Requete>::const_iterator it;
 	for (it = unVecRequetes.begin(); it != unVecRequetes.end(); ++it)
     {
-        string dest = it->GetDestination(); // Récupération de l'URL destination
-
-        // Incrémentation du compteur de hits pour cette URL
+        string dest = it->GetDestination();
         map<string, int>::iterator classementIt = classement.find(dest);
         if (classementIt == classement.end())
         {
-            classement.insert(make_pair(dest, 1)); // Première occurrence
+            classement.insert(make_pair(dest, 1));
         }
         else
         {
-            classementIt->second++; // Incrémentation du compteur
+            classementIt->second++;
         }
     }
-
-} //----- Fin de LireGraphe
+}
 
 void Classement::Affichage()
-// Algorithme :
-// - Copie les données de la map dans un vecteur pour permettre le tri.
-// - Trie les entrées par hits décroissants.
-// - Affiche les 10 premières URLs ou toutes si moins de 10.
 {
 	if (classement.empty())
 	{
@@ -66,50 +35,38 @@ void Classement::Affichage()
 		return;
 	}
 
-	// Copier les données dans un vecteur pour trier par valeur
 	vector<pair<string, int>> vec(classement.begin(), classement.end());
 
-	// Trier par nombre de hits décroissant
 	sort(vec.begin(), vec.end(),
 		 [](const pair<string, int> &a, const pair<string, int> &b) {
-			 return b.second < a.second; // Tri décroissant
+			 return b.second < a.second;
 		 });
 
-	// Afficher les 10 premières URLs
 	cout << "Top URLs consultées :" << endl;
 	for (size_t i = 0; i < 10 && i < vec.size(); ++i)
 	{
 		cout << vec[i].first << " (" << vec[i].second << " hits)" << endl;
 	}
 }
- //----- Fin de Affichage
 
 Classement::Classement()
-// Algorithme :
-//
 {
 	#ifdef MAP
     	cout << "Appel au constructeur de <Classement>" << endl;
 	#endif
-} //----- Fin de Classement
+}
 
 Classement::Classement(const Classement & unClassement)
-// Algorithme :
-//
 {
 	#ifdef MAP
     	cout << "Appel au constructeur de copie de <Classement>" << endl;
 	#endif
-
 	classement = unClassement.classement;
-
-} //----- Fin de Classement
+}
 
 Classement::~Classement()
-// Algorithme :
-//
 {
 	#ifdef MAP
     	cout << "Appel au destructeur de <Classement>" << endl;
 	#endif
-} //----- Fin de ~Classement
+}
