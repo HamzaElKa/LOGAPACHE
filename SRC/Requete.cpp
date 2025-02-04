@@ -1,9 +1,10 @@
 /*************************************************************************
                            Requete  -  description
                              -------------------
-    début                : 04/02/2025
-    copyright            : (C) 2025 par Mohammed IICH
-    e-mail               : mohammed.iich@outlook.fr
+    début                : 22/01/2025
+    copyright            : (C) 2025 par B3107 - B3110
+    e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
+    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
 //---------- Réalisation de la classe <Requete> (fichier Requete.cpp) ------------
