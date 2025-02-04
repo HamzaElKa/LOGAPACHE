@@ -4,7 +4,8 @@
     début                : 22/01/2025
     copyright            : (C) 2025 par B3107 - B3110
     e-mail               : mohammed.iich@insa-lyon.fr / hamza.el-karchouni@insa-lyon.fr / 
-    			   mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / youssef.erabhaoui@insa-lyon.fr
+                           mohamed.lemseffer@insa-lyon.fr / yliess.bellargui@insa-lyon.fr / 
+                           youssef.erabhaoui@insa-lyon.fr
 *************************************************************************/
 
 using namespace std;
@@ -18,21 +19,21 @@ using namespace std;
 #include "Classement.h"
 #include "Graphe.h"
 
-// Fonction permettant d'analyser les arguments en ligne de commande
+// Fonction pour analyser les arguments en ligne de commande
 void Demarrage(bool &, int &, bool &, bool &, string &, string &, const int &, char * [], bool &, const string &);
 
 int main(int argc, char * argv[])
 {
-    // Ensemble d'extensions de fichiers à filtrer
+    // Extensions de fichiers à filtrer
     unordered_set<string> extensions = {
         "jpg", "jpeg", "png", "bmp", "gif", "tiff", "tif", "webp", "ico",
         "svg", "eps", "ai", "raw", "cr2", "nef", "arw", "dng", "psd", "heic",
         "heif", "xcf", "css", "js", "mjs"
     };
 
-    string baseURL = "http://intranet-if.insa-lyon.fr";
+    string baseURL = "http://intranet-if.insa-lyon.fr"; // URL de base pour les logs
 
-    // Initialisation des variables de filtrage et d'options
+    // Variables pour les options de filtrage et autres paramètres
     bool filtrerTemps = false;
     int heure = -1;
     bool filtrerExtensions = false;
@@ -43,24 +44,25 @@ int main(int argc, char * argv[])
 
     // Analyse des arguments en ligne de commande
     Demarrage(filtrerTemps, heure, filtrerExtensions, genererGraphe, nomFic, nomGraphe, argc, argv, erreur, baseURL);
-    if (erreur) return 1; // Arrêt en cas d'erreur
+    if (erreur) return 1;
 
-    // Création des objets de traitement
+    // Création des objets nécessaires au traitement
     Filtrage filtre(filtrerTemps, heure, filtrerExtensions, extensions);
     Lecture lecture(nomFic, baseURL);
     Graphe graphe;
     Classement classement;
     
-    // Lecture et filtrage des requêtes
+    // Lecture des requêtes et application du filtrage
     vector<Requete> vecRequetes = lecture.Lire(filtre);
 
-    // Génération du graphe si demandé
+    // Génération du graphe si nécessaire
     if (genererGraphe) graphe.Ajouter(vecRequetes);
     classement.Ajouter(vecRequetes);
     
+    // Génération du fichier du graphe
     if (genererGraphe) graphe.GenererFichier(nomGraphe);
     classement.Affichage();
-    
+
     // Fin du programme principal
     return 0;
 }
@@ -77,88 +79,71 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool 
     }
 
     erreur = false;
-    nomFic = argv[argc-1]; // Récupération du dernier argument comme fichier d'entrée
+    nomFic = argv[argc-1]; // Récupération du fichier d'entrée
     int i = 1;
 
     while (i < argc - 1)
     {
-        if (!strcmp(argv[i], "-e")) // Option -e pour activer le filtrage des extensions
+        if (!strcmp(argv[i], "-e")) // Option pour filtrer les extensions
         {
-            if (filtrerExtensions)
-            { 
-                cerr << "Vous avez utilise plusieurs fois l'option de compilation -e" << endl;
+            if (filtrerExtensions) 
+            {
+                cerr << "Option -e utilisée plusieurs fois" << endl;
                 erreur = true;
                 return;
             }
-            else
-            {
-                filtrerExtensions = true;
-                i++;
-            }
+            filtrerExtensions = true;
+            i++;
         }
-        else if (!strcmp(argv[i], "-g")) // Option -g pour générer un graphe
+        else if (!strcmp(argv[i], "-g")) // Option pour générer un graphe
         {
             if (genererGraphe)
             {
                 erreur = true;
-                cerr << "Vous avez utilise plusieurs fois l'option de compilation -g" << endl;
+                cerr << "Option -g utilisée plusieurs fois" << endl;
                 return;
+            }
+            genererGraphe = true;
+            ++i;
+            if(i < argc - 1)
+            {
+                nomGraphe = argv[i]; // Nom du fichier pour le graphe
+                i++;
             }
             else
             {
-                genererGraphe = true;
-                ++i;
-                if(i<argc-1)
-                {
-                    if (!strcmp(argv[i],"-g"))
-                    {
-                        erreur=true;
-                        cerr << "Vous avez utilise plusieurs fois l'option de compilation -g" << endl;
-                        return;
-                    }
-					          nomGraphe=argv[i];
-					          i++;
-				        }
-                else
-                {
-                    erreur = true;
-                    cerr << "Il manque le nom de fichier du graphe" << endl;
-                    return;
-                }
+                erreur = true;
+                cerr << "Nom du fichier du graphe manquant" << endl;
+                return;
             }
         }
-        else if (!strcmp(argv[i], "-t")) // Option -t pour filtrer par heure
+        else if (!strcmp(argv[i], "-t")) // Option pour filtrer par heure
         {
             if (filtrerTemps)
             {
                 erreur = true;
-                cerr << "Vous avez utilise plusieurs fois l'option de compilation -t" << endl;
+                cerr << "Option -t utilisée plusieurs fois" << endl;
                 return;
+            }
+            filtrerTemps = true;
+            ++i;
+            if (i < argc - 1)
+            {
+                heure = stoi(argv[i]); // Heure de filtrage
+                if (heure < 0 || heure > 24)
+                {
+                    erreur = true;
+                    cerr << "L'heure doit être entre 0 et 24" << endl;
+                    return;
+                }
+                ++i;
             }
             else
             {
-                filtrerTemps = true;
-                ++i;
-                if (i < argc - 1)
-                {
-                    string heure_str = argv[i];
-                    heure = stoi(heure_str);
-                    if (heure < 0 || heure > 24)
-                    {
-                        erreur = true;
-                        cerr << "L'heure doit etre comprise entre 0 et 24" << endl;
-                        return;
-                    }
-                    ++i;
-                }
-                else
-                {
-                    erreur = true;
-                    cerr << "Vous n'avez pas indique d'heure" << endl;
-                    return;
-                }
+                erreur = true;
+                cerr << "Heure manquante" << endl;
+                return;
             }
         }
     }
-    // Fin de la fonction Demarrage
 }
