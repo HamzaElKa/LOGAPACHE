@@ -36,20 +36,16 @@ public:
 //----------------------------------------------------- Méthodes publiques
     
     void Ajouter(const vector<Requete> &unVecRequetes);
-    // Ajouter : Ajoute des requêtes dans le classement
     // Mode d'emploi : 
     // La méthode prend un vecteur de requêtes et les ajoute au classement.
     
-
     void Affichage();
-    // Affichage : Affiche le classement actuel
     // Mode d'emploi : 
-    // La méthode affiche le classement des requêtes dans la console.
-    
+    // La méthode affiche le classement des requêtes, triées par ordre décroissant du nombre de hits.
     
 //------------------------------------------------- Surcharge d'opérateurs
+    
     Classement & operator = ( const Classement &unClassement );
-    // Surcharge de l'opérateur d'affectation
     // Mode d'emploi : 
     // Cette méthode permet de copier un autre objet Classement dans le présent objet.
     // Contrat :
@@ -59,22 +55,16 @@ public:
 //-------------------------------------------- Constructeurs - destructeur
 
     Classement ( const Classement &unClassement );
-    // Constructeur de copie
-    // Mode d'emploi :
+    // Mode d'emploi : 
     // Initialise un objet Classement à partir d'un autre.
-    
 
     Classement ( );
-    // Constructeur par défaut
-    // Mode d'emploi :
-    // Initialise un objet Classement vide.
-    
+    // Mode d'emploi : 
+    // Initialise un objet Classement vide, sans éléments dans le classement.
 
     virtual ~Classement ( );
-    // Destructeur
-    // Mode d'emploi :
-    // Nettoie les ressources de l'objet Classement.
-    
+    // Mode d'emploi : 
+    // Nettoie les ressources utilisées par l'objet Classement lors de sa destruction.    
 
 //------------------------------------------------------------------ PRIVE
 
@@ -82,7 +72,7 @@ protected:
 //----------------------------------------------------- Méthodes protégées
 
 //----------------------------------------------------- Attributs protégés
-    map<string, int> classement; // Stocke le classement des requêtes sous forme d'un map.
+    map<string, int> classement; // On stocke le classement des requêtes sous forme d'un map, où la clé est l'URL et la valeur est le nombre de hits
 };
 
 #endif // CLASSEMENT_H
