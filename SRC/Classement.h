@@ -39,13 +39,13 @@ public:
     // Mode d'emploi : 
     // La méthode prend un vecteur de requêtes et les ajoute au classement.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     void Affichage();
     // Mode d'emploi : 
     // La méthode affiche le classement des requêtes, triées par ordre décroissant du nombre de hits.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
 //-------------------------------------------- Constructeurs - destructeur
 
@@ -53,19 +53,19 @@ public:
     // Mode d'emploi : 
     // Initialise un objet Classement à partir d'un autre.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     Classement ( );
     // Mode d'emploi : 
     // Initialise un objet Classement vide, sans éléments dans le classement.
     // Contrat : 
-    // aucun.
+    // Aucun.
 
     virtual ~Classement ( );
     // Mode d'emploi : 
     // Nettoie les ressources utilisées par l'objet Classement lors de sa destruction.    
     // Contrat : 
-    // aucun.
+    // Aucun.
 
 //------------------------------------------------------------------ PRIVE
 
