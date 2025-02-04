@@ -36,7 +36,7 @@ OPTIONSCHMOD = 777
 FICPERE = ./../
 
 # Compilation du programme principal
-$(EXEC): $(OBJECTS)
+$(EXEC): $(CHMOD) $(OBJECTS)
 	$(COMPIL) $(OPTIONS) $(EDL) $(EXEC) $(OBJECTS)
 
 # Ajout de l'option MAP si dÃƒÂ©finie
