@@ -25,36 +25,43 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
+// Retourne l'extension de l'URL (ex: .html, .jpg) à partir de la dernière occurrence du '.'
 string Requete::GetExtension() const
 {
     size_t pos = mRHTTP.url.find_last_of('.');
-    if (pos != string::npos)
+    if (pos != string::npos) // Vérifie si un '.' a été trouvé
     {
-        return mRHTTP.url.substr(pos + 1);
+        return mRHTTP.url.substr(pos + 1); // Retourne l'extension après le '.'
     }
-    return "";
+    return ""; // Si aucun '.' n'est trouvé, retourne une chaîne vide
 } //----- Fin de GetExtension
 
+// Retourne l'URL complète de la requête
 string Requete::GetDestination() const
 {
-    return mRHTTP.url;
+    return mRHTTP.url; // Retourne l'URL de la requête HTTP
 } //----- Fin de GetDestination
 
+// Retourne le referer (URL précédente) de la requête
 string Requete::GetReferer() const
 {
-    return mReferer;
+    return mReferer; // Retourne l'URL du referer
 } //----- Fin de GetReferer
 
+// Retourne l'heure de la requête
 int Requete::GetHeure() const
 {
-    return mDate.heure;
+    return mDate.heure; // Retourne l'heure de la date de la requête
 } //----- Fin de GetHeure
 
 //------------------------------------------------- Surcharge d'opérateurs
+
+// Surcharge de l'opérateur d'affectation (=) pour la classe Requete
 Requete & Requete::operator = (const Requete &unRequete)
 {
-    if (this != &unRequete)
+    if (this != &unRequete) // Vérifie que l'objet n'est pas assigné à lui-même
     {
+        // Copie des attributs de l'objet source dans l'objet courant
         mAdresseIP = unRequete.mAdresseIP;
         mLogName = unRequete.mLogName;
         mUserName = unRequete.mUserName;
@@ -65,19 +72,22 @@ Requete & Requete::operator = (const Requete &unRequete)
         mReferer = unRequete.mReferer;
         mClientID = unRequete.mClientID;
     }
-    return *this;
+    return *this; // Retourne l'objet courant après l'affectation
 } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
+
+// Constructeur de copie
 Requete::Requete(const Requete &unRequete)
 {
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Requete>" << endl;
 #endif
-    *this = unRequete;
+    *this = unRequete; // Utilisation de l'opérateur d'affectation pour copier les valeurs
 } //----- Fin de Requete (constructeur de copie)
 
+// Constructeur par défaut
 Requete::Requete()
 {
 #ifdef MAP
@@ -85,6 +95,7 @@ Requete::Requete()
 #endif
 } //----- Fin de Requete
 
+// Constructeur avec paramètres, initialise tous les attributs
 Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, requeteHTTP RHTTP, int Status, int Qte, string Referer, string ClientID)
 {
     mAdresseIP = AdresseIP;
@@ -98,6 +109,7 @@ Requete::Requete(string AdresseIP, string LogName, string UserName, Date Date, r
     mClientID = ClientID;
 } //----- Fin de Requete (constructeur avec paramètres)
 
+// Destructeur de la classe
 Requete::~Requete()
 {
 #ifdef MAP
