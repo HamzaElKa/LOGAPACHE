@@ -53,6 +53,7 @@ Cela générera un exécutable `analog`.
 - Le programme est conçu pour fonctionner avec des fichiers de logs Apache au format standard.
 - Un framework de test est fourni pour valider les résultats.
 - L’outil GraphViz doit être installé pour permettre la génération des fichiers `.dot`.
+- Les droits d'accès pour pouvoir effectuer les tests sont déjà gérés par le make, vous ne devriez effectuer aucun chmod. 
 
 ## Utilisation
 L'exécutable `analog` prend en argument un fichier de log et peut être utilisé avec différentes options.
@@ -93,10 +94,7 @@ L'exécutable `analog` prend en argument un fichier de log et peut être utilis�
 Un framework de test est fourni pour valider le fonctionnement du programme. Les tests doivent être passés avec succès avant toute soumission du projet.
 
 ### Exécution des tests dans le répértoire Tests de FrameWorkdeTests et droits d'accès 
-Avant de commencer les tests, effectuer dans votre terminal la commande suivant dans votre répértoire 
-```sh
-make chmod
-```
+
 Puis rentrer dans le répértoire situé dans FrameWorkdeTests puis Tests et effectuer la commande suivante : 
 ```sh
 ./mktest.sh
