@@ -22,6 +22,7 @@
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Filtrage>
+//
 // Cette classe permet de filtrer des requêtes en fonction de critères définis.
 // Elle offre des méthodes pour appliquer des filtres sur les extensions de fichiers 
 // et l'heure des requêtes, et décider si une requête doit être ignorée ou non.
