@@ -54,9 +54,8 @@ bool Filtrage::Skip(const Requete & r) const
 //-------------------------------------------- Constructeurs - destructeur
 
 // Constructeur : initialise les critères de filtrage selon les paramètres
-Filtrage::Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unordered_set<string> Extensions) : mFiltrerTemps(filtrerTemps), 
-                                                                                                        mHeure(heure), mFiltrerExtensions(filtrerExtensions), 
-                                                                                                        mExtensions(Extensions)
+Filtrage::Filtrage(bool filtrerTemps, int heure, bool filtrerExtensions, unordered_set<string> Extensions) 
+: mFiltrerTemps(filtrerTemps), mHeure(heure), mFiltrerExtensions(filtrerExtensions), mExtensions(Extensions)
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Filtrage>" << endl;
