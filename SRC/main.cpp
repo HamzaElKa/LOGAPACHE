@@ -108,11 +108,17 @@ void Demarrage(bool & filtrerTemps, int & heure, bool & filtrerExtensions, bool 
             {
                 genererGraphe = true;
                 ++i;
-                if (i < argc - 1)
+                if(i<argc-1)
                 {
-                    nomGraphe = argv[i];
-                    i++;
-                }
+                    if (!strcmp(argv[i],"-g"))
+                    {
+                        erreur=true;
+                        cerr << "Vous avez utilise plusieurs fois l'option de compilation -g" << endl;
+                        return;
+                    }
+					          nomGraphe=argv[i];
+					          i++;
+				        }
                 else
                 {
                     erreur = true;
